@@ -24,4 +24,22 @@ router.get("/obtenertodosproductos", (req, res) => {
     })
 });
 
+
+router.get("/productobyid", (req, res) => {
+
+    let productId = req.query.id;
+
+    
+    Producto.find({_id : productId},(err, docs)=>{
+        if(!err)
+        {
+            return res.send(docs[0]);
+        } else {
+            console.log(err);
+            console.log(docs);
+            return res.status(400).json({message : 'datos no obtenidos'})
+        }
+    })
+});
+
 module.exports = router
