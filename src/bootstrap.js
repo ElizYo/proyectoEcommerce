@@ -4,13 +4,25 @@ import { Provider } from "react-redux"; // Importa Provider solo una vez
 import { createStore, applyMiddleware } from "redux";
 import { BrowserRouter } from "react-router-dom";
 import App from "./components/app";
-import reducers from "./reducers";
+import store  from "./reducers/store";
 
-const createStoreWithMiddleware = applyMiddleware()(createStore);
+//ESTE ES EL INDEX DEL INDIO
+//createStoreWithMiddleware.dispatch({sasas})
 
 import "./style/main.scss";
 
 function main() {
+  ReactDOM.render(
+    <Provider store={store}>
+      <BrowserRouter>
+        <App />
+      </BrowserRouter>
+    </Provider>,
+    document.querySelector(".app-wrapper")
+  );
+}
+
+/*function main() {
   ReactDOM.render(
     <Provider store={createStoreWithMiddleware(reducers)}>
       <BrowserRouter>
@@ -19,6 +31,6 @@ function main() {
     </Provider>,
     document.querySelector(".app-wrapper")
   );
-}
+}*/
 
 document.addEventListener("DOMContentLoaded", main);

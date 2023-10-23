@@ -49,6 +49,17 @@
   font-size: 1.5em;
   margin-right: 5px;
 }
+h1 {
+  font-size: 18px;
+  text-align: left;
+}
+
+.image-fluid {
+  display: block;
+  /* Asegura que la imagen sea un elemento en bloque */
+  margin: 0 auto;
+  height: 180px;
+}
 html {
   font-size: 62.5%;
 }
@@ -73,17 +84,6 @@ body {
 
 .app {
   display: grid;
-}
-h1 {
-  font-size: 18px;
-  text-align: left;
-}
-
-.image-fluid {
-  display: block;
-  /* Asegura que la imagen sea un elemento en bloque */
-  margin: 0 auto;
-  height: 180px;
 }
 @charset "UTF-8";
 /*!
@@ -12546,4 +12546,4 @@ textarea.form-control-lg {
 
 /*# sourceMappingURL=bootstrap.css.map */
 
-/*# sourceMappingURL=app-5f7d81364c10091bc5f2.map*/
+/*# sourceMappingURL=app-d43bbae0e4914110cb34.map*/
