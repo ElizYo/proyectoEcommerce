@@ -1,6 +1,8 @@
 import { combineReducers } from 'redux';
 import { getAllProductosReducer } from './productosReducer'
 import { getProductoByIdReducer } from './productosReducer'
+import { getcarritoReducer } from './carritoReducer'
+
 import {createStore , applyMiddleware} from 'redux' 
 import { composeWithDevTools } from 'redux-devtools-extension';
 import thunk from 'redux-thunk';
@@ -8,12 +10,20 @@ import thunk from 'redux-thunk';
 const rootReducer = combineReducers({
   getAllProductosReducer: getAllProductosReducer,
   getProductoByIdReducer : getProductoByIdReducer,
+  getcarritoReducer : getcarritoReducer,
 });
+
+const articles = JSON.parse(localStorage.getItem('articles')) || [];
+
+const initialState = {
+  getcarritoReducer: { articles:articles } 
+};
+
 
 const composeEnhancers = composeWithDevTools({
   // Specify here name, actionsBlacklist, actionsCreators and other options
 });
-const store = createStore(rootReducer , {}, composeEnhancers(
+const store = createStore(rootReducer , initialState, composeEnhancers(
   applyMiddleware(thunk)
   // other store enhancers if any
 ))

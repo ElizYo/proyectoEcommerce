@@ -1,12 +1,19 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { getProductoById } from "../../actions/productosActions";
+import { carritoActions } from "../../actions/carritoActions";
 
 export default function Productdesc({ match }) {
 
-    
+
   const productoid = match.params.id;
   const dispatch = useDispatch();
+
+  const [cantidad, setcantidad] = useState(1);
+  
+  function addtocart() {
+    dispatch(carritoActions(product, cantidad));
+  }
 
   const getproductbyidstate = useSelector(
     (state) => state.getProductoByIdReducer
@@ -34,7 +41,7 @@ export default function Productdesc({ match }) {
               <hr />
               <img
                 src={product.image}
-                alt={product.nombre} // Make sure to add an 'alt' attribute for images
+                alt={product.nombre}
                 className="img-fluid m-3 bigimg"
               />
               <p>{product.descripcion}</p>
@@ -47,9 +54,33 @@ export default function Productdesc({ match }) {
               </h1>
               <hr />
               <h1>Select Quantity</h1>
+              <select
+                value={cantidad}
+                onChange={(e) => {
+                  setcantidad(e.target.value);
+                }}
+              >{[...Array(product.stock).keys()].map((x, i) => {
+                return <option value={i + 1}>{i + 1}</option>;
+              })}
+              </select>
               <hr />
-              <button className="btn btn-dark">ADD TO CART</button>
+              {product.stock > 0 ? (
+                <button className="btn btn-dark" onClick={addtocart}>
+                  ADD TO CART
+                </button>
+              ) : (
+
+                <div>
+
+                  <h1>Out Of StocK</h1>
+                  <button className="btn" disabled onClick={addtocart}>
+                    ADD TO CART
+
+                  </button>
+                </div>
+              )}
             </div>
+            <hr />
           </div>
         </div>
       )}
