@@ -49,6 +49,16 @@
   font-size: 1.5em;
   margin-right: 5px;
 }
+.item-card {
+  border: 3px solid #7d7d7d;
+  border-radius: 12px;
+}
+
+.item-info {
+  display: flex;
+  gap: 15px;
+  flex-wrap: wrap;
+}
 h1 {
   font-size: 18px;
   text-align: left;
@@ -69,7 +79,6 @@ html {
 *::before {
   margin: 0;
   padding: 0;
-  box-sizing: inherit;
   font-family: 'montserrat';
 }
 
@@ -84,6 +93,64 @@ body {
 
 .app {
   display: grid;
+}
+.form-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+}
+
+.card {
+  background-color: #fff;
+  border-radius: 10px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  padding: 20px;
+  max-width: 400px;
+  width: 100%;
+  text-align: center;
+}
+
+.card h2 {
+  font-size: 24px;
+  margin-bottom: 20px;
+}
+
+.card form input {
+  width: 100%;
+  padding: 10px;
+  margin: 10px 0;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+}
+
+.card form input::-moz-placeholder {
+  color: #aaa;
+}
+
+.card form input::placeholder {
+  color: #aaa;
+}
+
+.card form .password-fields {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+}
+
+.card form .password-fields input {
+  width: 100%;
+  max-width: calc(50% - 5px);
+}
+
+.card form button {
+  background-color: #333;
+  color: #fff;
+  border: none;
+  border-radius: 5px;
+  padding: 10px 20px;
+  font-size: 16px;
+  margin-top: 10px;
 }
 @charset "UTF-8";
 /*!
@@ -12546,4 +12613,4 @@ textarea.form-control-lg {
 
 /*# sourceMappingURL=bootstrap.css.map */
 
-/*# sourceMappingURL=app-8760f386de7bd0b827dc.map*/
+/*# sourceMappingURL=app-5db4fdb615338a4e7419.map*/

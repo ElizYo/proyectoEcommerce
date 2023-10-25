@@ -31,9 +31,9 @@ export default function Home() {
   }, []);*/
 
   return <div>
-    <div className='row justify-content-center'>
+    <div className='row justify-content-evenly px-5'>
     {products && products.length && (products.map(product => {
-        return <div className="col-md-3 m-5 card p-2" key={product._id}> 
+        return <div className="col-12 col-md-6 col-lg-4 p-5" key={product._id}> 
           <Product product={product}/>
           </div>
       }))

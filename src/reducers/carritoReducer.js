@@ -1,6 +1,6 @@
 export const getcarritoReducer = (state = { articles: [] }, action) => {
 
-    console.log("Datos reducer carrito", state);
+    //console.log("Datos reducer carrito", state);
 
     switch (action.type) {
         case 'ADD_TO_CART':

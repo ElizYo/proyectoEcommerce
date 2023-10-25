@@ -1,0 +1,66 @@
+// Variables
+$main-bg-color: #fff;
+$card-border-radius: 10px;
+$card-box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+$input-border: 1px solid #ccc;
+
+@mixin button-styles {
+  background-color: #333;
+  color: #fff;
+  border: none;
+  border-radius: 5px;
+  padding: 10px 20px;
+  font-size: 16px;
+}
+
+.form-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+}
+
+.card {
+  background-color: $main-bg-color;
+  border-radius: $card-border-radius;
+  box-shadow: $card-box-shadow;
+  padding: 20px;
+  max-width: 400px;
+  width: 100%;
+  text-align: center;
+
+  h2 {
+    font-size: 24px;
+    margin-bottom: 20px;
+  }
+
+  form {
+    input {
+      width: 100%;
+      padding: 10px;
+      margin: 10px 0;
+      border: $input-border;
+      border-radius: 5px;
+
+      &::placeholder {
+        color: #aaa;
+      }
+    }
+
+    .password-fields {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+
+      input {
+        width: 100%;
+        max-width: calc(50% - 5px);
+      }
+    }
+
+    button {
+      @include button-styles;
+      margin-top: 10px;
+    }
+  }
+}

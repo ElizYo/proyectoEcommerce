@@ -2,6 +2,7 @@ import { combineReducers } from 'redux';
 import { getAllProductosReducer } from './productosReducer'
 import { getProductoByIdReducer } from './productosReducer'
 import { getcarritoReducer } from './carritoReducer'
+import { registerNuevoUsuarioReducer } from './usuarioReducer'
 
 import {createStore , applyMiddleware} from 'redux' 
 import { composeWithDevTools } from 'redux-devtools-extension';
@@ -11,6 +12,8 @@ const rootReducer = combineReducers({
   getAllProductosReducer: getAllProductosReducer,
   getProductoByIdReducer : getProductoByIdReducer,
   getcarritoReducer : getcarritoReducer,
+  registerNuevoUsuarioReducer : registerNuevoUsuarioReducer,
+  
 });
 
 const articles = JSON.parse(localStorage.getItem('articles')) || [];
