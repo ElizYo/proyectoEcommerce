@@ -2,6 +2,8 @@ import React from 'react'
 import {useDispatch, useSelector} from 'react-redux'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faTrash } from '@fortawesome/free-solid-svg-icons';
+import { carritoActions , deleteFromCart } from '../../actions/carritoActions'
+
 
 export default function Cart() {
 
@@ -17,7 +19,7 @@ export default function Cart() {
             <div className="row mt-3 justify-content-center">
 
                  <div className="col-md-8 card text-center shadow p-3 mb-5 bg-white rounded">
-                     <h2 className='text-center m-5'>MY CART</h2>
+                     <h2 className='text-center m-5'>Mi compra</h2>
                      <table className='table table-bordered table-responsives-sm'>
 
                       <thead>
@@ -37,7 +39,7 @@ export default function Cart() {
                             return <tr>
                                 <td>{item.nombre}</td>
                                 <td>{item.precio}</td>
-                                <td><select value={item.cantidad} onChange={(e)=>{dispatch(addToCart(item , e.target.value))}}>
+                                <td><select value={item.cantidad} onChange={(e)=>{dispatch(carritoActions(item , e.target.value))}}>
                                     
                                     {[...Array(item.stock).keys()].map((x , i)=>{
 
@@ -48,7 +50,7 @@ export default function Cart() {
                                     </select></td>
                                 <td>{item.cantidad * item.precio}</td>
                                     <td>
-                                        <FontAwesomeIcon icon={faTrash} />
+                                    <FontAwesomeIcon icon={faTrash} onClick={() => dispatch(deleteFromCart(item))} />
                                     </td>
                                 </tr>
 

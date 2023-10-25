@@ -16,5 +16,13 @@ export const carritoActions=(product , cantidad)=>(dispatch, getState)=>{
     dispatch({type : 'ADD_TO_CART' , payload : carritoArticulos})
 
     localStorage.setItem('articles', JSON.stringify(getState().getcarritoReducer.articles));
+}
+
+export const deleteFromCart=(item)=>(dispatch , getState)=>{
+
+  dispatch({type:'DELETE_FROM_CART' , payload:item})
+
+  localStorage.setItem('articles' , JSON.stringify(getState().getcarritoReducer.articles))
+
 
 }
