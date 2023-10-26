@@ -53,8 +53,8 @@ export default function Register() {
             <h2>Register</h2>
             
             {loading && (<Loader/>)}
-            {error && (<Error error ='Email Address is already registred' ></Error>)}
-            {success && (<Success success='Your Registration is successfull' />)}
+            {error && (<Error error ='El email ya esta registrado' ></Error>)}
+            {success && (<Success success='Te registraste correctamnte' />)}
 
             <form onSubmit={register}>
               <input

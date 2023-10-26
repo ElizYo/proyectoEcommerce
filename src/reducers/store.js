@@ -1,9 +1,7 @@
 import { combineReducers } from 'redux';
-import { getAllProductosReducer } from './productosReducer'
-import { getProductoByIdReducer } from './productosReducer'
+import { getAllProductosReducer, getProductoByIdReducer } from './productosReducer'
 import { getcarritoReducer } from './carritoReducer'
-import { registerNuevoUsuarioReducer } from './usuarioReducer'
-
+import { loginReducer, registerNuevoUsuarioReducer } from './usuarioReducer'
 import {createStore , applyMiddleware} from 'redux' 
 import { composeWithDevTools } from 'redux-devtools-extension';
 import thunk from 'redux-thunk';
@@ -13,13 +11,18 @@ const rootReducer = combineReducers({
   getProductoByIdReducer : getProductoByIdReducer,
   getcarritoReducer : getcarritoReducer,
   registerNuevoUsuarioReducer : registerNuevoUsuarioReducer,
+  loginReducer : loginReducer,
   
 });
 
 const articles = JSON.parse(localStorage.getItem('articles')) || [];
+const currentUser = localStorage.getItem('currentUser') ? JSON.parse(localStorage.getItem('currentUser')) : null
+
 
 const initialState = {
-  getcarritoReducer: { articles:articles } 
+  getcarritoReducer: { articles:articles },
+  loginReducer : {currentUser : currentUser}
+
 };
 
 
