@@ -5,24 +5,15 @@ import { faShoppingCart } from "@fortawesome/free-solid-svg-icons";
 import { faUser } from "@fortawesome/free-solid-svg-icons";
 import logo from "../../../static/assets/logo.png";
 import '../../style/navbar.scss';
-import { useSelector } from "react-redux";
+import { useSelector,useDispatch } from "react-redux";
 import 'bootstrap';
+import { logoutUsuario } from "../../actions/usuarioActions";
 
 const NavigationComponent = () => {
   const getCarrito = useSelector((state) => state.getcarritoReducer);
   const { articles } = getCarrito;
   const currentUser = JSON.parse(localStorage.getItem("currentUser"));
-  //const [showDropdown, setShowDropdown] = useState(false);
-  
-  /*const toggleDropdown = () => {
-    console.log("Toggle Dropdown");
-    setShowDropdown(!showDropdown);
-  };
-  
-  const closeDropdown = () => {
-    console.log("Close Dropdown");
-    setShowDropdown(false);
-  };*/
+  const dispatch = useDispatch();
   
   return (
     <div className="nav-container" id="test">
@@ -49,14 +40,14 @@ const NavigationComponent = () => {
           </NavLink>
   
           {currentUser ? (
-              <div class="dropdown">
+              <div class="dropdown"  style={{ border: 'none', background: 'none' }}>
                 <button class="btn btn-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
                   {currentUser.nombre}
                 </button>
                 <ul class="dropdown-menu">
                   <li><a class="dropdown-item" href="/profile">Profile</a></li>
                   <li><a class="dropdown-item" href="/orders">Orders</a></li>
-                  <li><a class="dropdown-item" href="#">Logout</a></li>
+                  <li><a className="dropdown-item" onClick={() => dispatch(logoutUsuario())}>Logout</a></li>
                 </ul>
               </div>
           ) : (
