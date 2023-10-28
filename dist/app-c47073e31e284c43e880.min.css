@@ -59,6 +59,13 @@
   gap: 15px;
   flex-wrap: wrap;
 }
+
+.btn {
+  background-color: black;
+  padding: 15px 40px;
+  font-size: 15px;
+  color: white;
+}
 h1 {
   font-size: 18px;
   text-align: left;
@@ -69,30 +76,6 @@ h1 {
   /* Asegura que la imagen sea un elemento en bloque */
   margin: 0 auto;
   height: 180px;
-}
-html {
-  font-size: 62.5%;
-}
-
-*,
-*::after,
-*::before {
-  margin: 0;
-  padding: 0;
-  font-family: 'montserrat';
-}
-
-body {
-  overflow-x: hidden;
-  font-weight: normal;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-rendering: optimizeLegibility;
-  -webkit-tap-highlight-color: transparent;
-}
-
-.app {
-  display: grid;
 }
 .form-container {
   display: flex;
@@ -151,6 +134,30 @@ body {
   padding: 10px 20px;
   font-size: 16px;
   margin-top: 10px;
+}
+html {
+  font-size: 62.5%;
+}
+
+*,
+*::after,
+*::before {
+  margin: 0;
+  padding: 0;
+  font-family: 'montserrat';
+}
+
+body {
+  overflow-x: hidden;
+  font-weight: normal;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-rendering: optimizeLegibility;
+  -webkit-tap-highlight-color: transparent;
+}
+
+.app {
+  display: grid;
 }
 @charset "UTF-8";
 /*!
@@ -12613,4 +12620,4 @@ textarea.form-control-lg {
 
 /*# sourceMappingURL=bootstrap.css.map */
 
-/*# sourceMappingURL=app-ef7cd425178900b77302.map*/
+/*# sourceMappingURL=app-6d2424688bc0ca8fbee3.map*/

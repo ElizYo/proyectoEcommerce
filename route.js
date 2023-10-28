@@ -11,11 +11,13 @@ router.post("/api/get_subjects", (req, res) => {
 // Importa productosRoute
 const productosRoute = require('./routes/productoRoute');
 const usuarioRoute = require('./routes/usuarioRoute');
+const pasarelaRoute = require('./routes/pasarelaRoute');
 
 
 // Usar productosRoute con la ruta /api/productos
 router.use('/api/productos', productosRoute);
 router.use('/api/usuarios', usuarioRoute);
+router.use('/api/orders', pasarelaRoute);
 
 
 module.exports = router; // Exporta el enrutador

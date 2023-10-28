@@ -35,3 +35,9 @@ export const getProductoById = (productoid) => (dispatch) => {
       dispatch({ type: "GET_PRODUCTOBYID_FAILED", payload: err });
     });
 };
+
+/*export const getProductsByText = (filterText) => (dispatch) => {
+
+  dispatch({ type: "GET_PRODUCTS_BY_TEXT", payload: filterText });
+
+}*/

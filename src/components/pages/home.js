@@ -5,6 +5,7 @@ import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { getAllProductos } from "../../actions/productosActions";
 import '../../style/index.scss';
+import Filtro from "../filtro";
 
 export default function Home() {
 
@@ -20,17 +21,8 @@ export default function Home() {
     dispatch(getAllProductos());
   }, []);
 
-  /*
-  const [products, setProducts] = useState([]);
-
-  useEffect(() => {
-    axios.get('http://localhost:3000/api/productos/obtenertodosproductos').then(res =>{
-      console.log(res.json);
-      setProducts(res.data);
-    }).catch(err => console.log(err));
-  }, []);*/
-
   return <div>
+    <Filtro/>
     <div className='row justify-content-evenly px-5'>
     {products && products.length && (products.map(product => {
         return <div className="col-12 col-md-6 col-lg-4 p-5" key={product._id}> 

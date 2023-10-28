@@ -3,6 +3,8 @@ import {useDispatch, useSelector} from 'react-redux'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faTrash } from '@fortawesome/free-solid-svg-icons';
 import { carritoActions , deleteFromCart } from '../../actions/carritoActions'
+import '../../style/product.scss';
+import Pasarela from '../Pasarela';
 
 
 export default function Cart() {
@@ -11,7 +13,7 @@ export default function Cart() {
     const dispatch = useDispatch()
     const {articles} = carritoReducerstate
 
-    var subtotal = articles.reduce((acc , item) => acc + (item.precio*item.cantidad) , 0) 
+    var total = articles.reduce((acc , item) => acc + (item.precio*item.cantidad) , 0) 
 
     return (
         <div>
@@ -63,9 +65,11 @@ export default function Cart() {
                      <hr/>
 
 
-                     <h2 className='text-center'>SubTotal : {subtotal} €</h2>
+                     <h2 className='text-center'>Total : {total} €</h2>
 
                      <hr/>
+                    <Pasarela amount={total}/>
+
                  </div>
 
             </div>
