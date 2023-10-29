@@ -20,5 +20,12 @@ module.exports = {
     pathRewrite: function (path) {
       return path.replace(/^\/node-1/, ''); // remove '/node-1' prefix when requesting
     }
+  },
+  '/api':{
+    target: 'http://localhost:3001',
+    secure: false,
+    pathRewrite: function (path) {
+      return path; // remove '/node-1' prefix when requesting
+    }
   }
 };

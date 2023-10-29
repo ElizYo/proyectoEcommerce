@@ -6,7 +6,7 @@ export const registrarNuevoUsuario = (usuario) => dispatch => {
     dispatch({ type: 'USER_REGISTER_REQUEST' })
 
     axios
-        .post("/api/usuarios/register", usuario)
+        .post("http://localhost:3000/api/usuarios/register", usuario)
         .then(res => {
             dispatch({ type: 'USER_REGISTER_SUCCESS' })
 
@@ -27,9 +27,10 @@ export const loginUsuario = (user) => dispatch => {
     dispatch({ type: 'USER_LOGIN_REQUEST' })
 
     axios
-        .post("/api/usuarios/login", user)
+        .post("http://localhost:3000/api/usuarios/login", user)
         .then(res => {
-            dispatch({ type: 'USER_LOGIN_SUCCESS' })
+            dispatch({ type: 'USER_LOGIN_SUCCESS', payload: user})
+            
             console.log("Iniciaste sesión");
 
             localStorage.setItem('currentUser', JSON.stringify(res.data))
@@ -39,7 +40,7 @@ export const loginUsuario = (user) => dispatch => {
         })
         .catch(err => {
             dispatch({ type: 'USER_LOGIN_FAILED', payload: err })
-            console.log(err);
+            console.log("ERROR_LOGIN",err);
 
         });
 
@@ -56,5 +57,25 @@ export const logoutUsuario = ()=>dispatch=>{
 
     window.location.href='/login'
 
-
 }
+
+export const updateUsuario=(userid , updateduser)=>(dispatch, getState)=>{
+
+    console.log(updateduser);
+ 
+   axios
+     .put("http://localhost:3000/api/usuarios/updateusuario" , {userid : userid , updateduser : updateduser})
+     .then(res => {
+
+        dispatch({type:'USER_UPDATE_SUCCESS', payload: updateduser})
+        dispatch({type: 'USER_LOGIN_SUCCESS', payload: updateduser})
+
+        localStorage.setItem('currentUser', JSON.stringify(getState().loginReducer.currentUser));
+        console.log(res)
+     })
+     .catch(err => {
+        dispatch({type:'USER_UPDATE_FAILED' , payload : err})
+        console.log("ERROR_UPDATE_USER", err);
+     });
+ 
+ }

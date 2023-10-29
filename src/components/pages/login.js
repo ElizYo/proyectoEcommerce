@@ -18,6 +18,7 @@ export default function Login() {
     function login(e) {
 
         e.preventDefault()
+        
         const user = {
             usuario: usuario,
             password: password

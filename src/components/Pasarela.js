@@ -1,10 +1,19 @@
 import React from "react";
 import StripeCheckout from 'react-stripe-checkout'
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { placeOrder } from "../actions/pasaleraActions";
+import Loader from './Loader'
+import Success from './Success'
+import Error from './Error'
+
 import "../style/product.scss";
 export default function Pasarela({amount}) {
+
     const dispatch=useDispatch()
+    
+    const orderstate = useSelector(state=>state.placeOrderReducer)
+
+    const { loading, success, error } = orderstate
 
     function tokenHandler(token) {
         console.log(token);
@@ -13,6 +22,10 @@ export default function Pasarela({amount}) {
 
     return(
         <div>
+            {loading && (<Loader/>)}
+            {success && (<Success success='Tu pedido ha sido realizado.'/>)}
+            {error && (<Error error='Algo salio mal,intentalo de nuevo.'/>)}
+
             <StripeCheckout 
             token={tokenHandler}
             amount={amount}

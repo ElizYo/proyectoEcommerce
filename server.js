@@ -1,12 +1,12 @@
+const env = require('./env');
+
 const express = require('express');
-const env = require('node-env-file'); // .env file
-const port = 3000;
+
+const port = env.devServer.PORT || 8080;
 const app = express();
 const path = require("path");
 
 const router = express.Router();
-
-env(path.join(__dirname + '/env.js'));
 
 //DB CONECTION
 require(path.join(__dirname + "/db.js"))
@@ -34,4 +34,4 @@ app.use(express.json());
 
 app.listen(port);
 
-console.log("server started");
+console.log("server started on ", port);

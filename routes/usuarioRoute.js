@@ -47,19 +47,24 @@ router.post("/register", (req, res) => {
 
 router.post("/login", (req, res) => {
 
-    Usuario.find({ usuario: req.body.usuario, password: req.body.password }, (err, docs) => {
-        if(docs.length>0)
-        {
-           const user = {
-               nombre : docs[0].nombre , 
-               _id : docs[0]._id ,
-               usuario : docs[0].usuario,
-           }
+    const { usuario, password } = req.body;
 
-           res.send(user)
-        }
-        else{
-            return res.status(400).json({ message: 'Credenciales Invalidas' });
+    Usuario.find({ usuario: usuario, password: password }, (err, docs) => {
+        if(!err) {
+            if(docs.length>0) {
+               const user = {
+                   nombre : docs[0].nombre , 
+                   _id : docs[0]._id ,
+                   usuario : docs[0].usuario,
+                   email : docs[0].email
+               }
+    
+               res.send(user)
+            } else {
+                return res.status(400).json({ message: 'Credenciales Invalidas' });
+            }
+        } else {
+            console.log("ERR-MODEL-USER", err);
         }
     })
 
@@ -96,6 +101,35 @@ router.delete("/deleteusuario", (req, res) => {
     })
 
 });
+
+router.put("/updateusuario", (req, res) => {
+
+    console.log("Entre");
+
+    console.log(req.body);
+
+    const { userid,  updateduser} = req.body;
+
+    console.log(userid, updateduser);
+
+    Usuario.findByIdAndUpdate(userid , {
+        nombre : updateduser.nombre ,
+        email : updateduser.email , 
+        password : updateduser.password
+    } , (err)=>{
+
+        if(err){
+            console.log(userid);
+            return res.status(400).json({ message: 'Algo salio mal :(' + err});
+           
+        }
+        else{
+            res.send('Usuario actualizado correctamente')
+        }
+
+    })
+
+})
 
 
 module.exports = router

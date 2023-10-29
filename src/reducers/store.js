@@ -1,20 +1,21 @@
 import { combineReducers } from 'redux';
 import { getAllProductosReducer, getProductoByIdReducer, getProductByTextReducer } from './productosReducer'
 import { getcarritoReducer } from './carritoReducer'
-import { loginReducer, registerNuevoUsuarioReducer } from './usuarioReducer'
+import { loginReducer, registerNuevoUsuarioReducer, updateUsuarioReducer } from './usuarioReducer'
 import {createStore , applyMiddleware} from 'redux' 
 import { composeWithDevTools } from 'redux-devtools-extension';
 import thunk from 'redux-thunk';
-import { placeOrderReducer } from './pasarelaReducer';
+import { placeOrderReducer, getOrdersByUserIdReducer } from './pasarelaReducer';
 
 const rootReducer = combineReducers({
   getAllProductosReducer: getAllProductosReducer,
   getProductoByIdReducer : getProductoByIdReducer,
   getcarritoReducer : getcarritoReducer,
   registerNuevoUsuarioReducer : registerNuevoUsuarioReducer,
+  updateUsuarioReducer: updateUsuarioReducer,
   loginReducer : loginReducer,
-  placeOrderReducer : placeOrderReducer
-  
+  placeOrderReducer : placeOrderReducer,
+  getOrdersByUserIdReducer : getOrdersByUserIdReducer,
 });
 
 const articles = JSON.parse(localStorage.getItem('articles')) || [];
