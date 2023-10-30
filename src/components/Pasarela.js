@@ -33,7 +33,7 @@ export default function Pasarela({amount}) {
             currency="EUR"
             stripeKey="pk_test_51O6DtGABEMRaYOZG8Hh0TePenTyvgssI4MJiqpD0FZkcoCdJvinOtJoO0YvcSlHSBq3oQNw7cS6BGMK6k8vkUgLG00xEFH1eqU"
             >
-                <button class="btn">PAY NOW</button>
+                <button class="btn">Pagar</button>
             </StripeCheckout>
         </div>
     )

@@ -5,7 +5,15 @@ h1 {
 
 .image-fluid {
     display: block;
-    /* Asegura que la imagen sea un elemento en bloque */
     margin: 0 auto;
     height: 180px;
 }
+
+.product-container {
+    display: flex;
+    flex-wrap: wrap;
+    background: #f1f0f0;
+    justify-content: space-between;
+    padding: 0 5rem; 
+  }
+  

@@ -3,15 +3,7 @@ const Producto = require("../modelos/productoModelo");
 const router = express.Router();
 
 router.get("/obtenertodosproductos", (req, res) => {
-    /*let myProduct =  new Producto();
-    myProduct.find({},(err, docs)=>{
-        if(!err)
-        {
-            return res.json({ data : docs});
-        } else {
-            return res.status(400).json({message : 'datos no obtenidos'})
-        }
-    })*/
+
     Producto.find({},(err, docs)=>{
         if(!err)
         {
