@@ -29,8 +29,8 @@ export const loginUsuario = (user) => dispatch => {
     axios
         .post("http://localhost:3000/api/usuarios/login", user)
         .then(res => {
-            dispatch({ type: 'USER_LOGIN_SUCCESS', payload: user})
-            
+            dispatch({ type: 'USER_LOGIN_SUCCESS', payload: user })
+
             console.log("Iniciaste sesión");
 
             localStorage.setItem('currentUser', JSON.stringify(res.data))
@@ -40,42 +40,69 @@ export const loginUsuario = (user) => dispatch => {
         })
         .catch(err => {
             dispatch({ type: 'USER_LOGIN_FAILED', payload: err })
-            console.log("ERROR_LOGIN",err);
+            console.log("ERROR_LOGIN", err);
 
         });
 
 }
 
 
-export const logoutUsuario = ()=>dispatch=>{
+export const logoutUsuario = () => dispatch => {
 
-   
+
     localStorage.removeItem('currentUser')
     localStorage.removeItem('articles')
 
-    dispatch({type : 'USER_LOGOUT'})
+    dispatch({ type: 'USER_LOGOUT' })
 
-    window.location.href='/login'
+    window.location.href = '/login'
 
 }
 
-export const updateUsuario=(userid , updateduser)=>(dispatch, getState)=>{
+export const updateUsuario = (userid, updateduser) => (dispatch, getState) => {
 
     console.log(updateduser);
- 
-   axios
-     .put("http://localhost:3000/api/usuarios/updateusuario" , {userid : userid , updateduser : updateduser})
-     .then(res => {
 
-        dispatch({type:'USER_UPDATE_SUCCESS', payload: updateduser})
-        dispatch({type: 'USER_LOGIN_SUCCESS', payload: updateduser})
+    axios
+        .put("http://localhost:3000/api/usuarios/updateusuario", { userid: userid, updateduser: updateduser })
+        .then(res => {
 
-        localStorage.setItem('currentUser', JSON.stringify(getState().loginReducer.currentUser));
-        console.log(res)
-     })
-     .catch(err => {
-        dispatch({type:'USER_UPDATE_FAILED' , payload : err})
-        console.log("ERROR_UPDATE_USER", err);
-     });
- 
- }
+            dispatch({ type: 'USER_UPDATE_SUCCESS', payload: updateduser })
+            dispatch({ type: 'USER_LOGIN_SUCCESS', payload: updateduser })
+
+            localStorage.setItem('currentUser', JSON.stringify(getState().loginReducer.currentUser));
+            console.log(res)
+        })
+        .catch(err => {
+            dispatch({ type: 'USER_UPDATE_FAILED', payload: err })
+            console.log("ERROR_UPDATE_USER", err);
+        });
+
+}
+
+
+export const getAllUsuarios = () => dispatch => {
+    axios
+        .get("http://localhost:3000/api/usuarios/getallusuarios")
+        .then(res => {
+            dispatch({ type: 'GET_ALL_USUARIOS_SUCCESS', payload: res.data })
+        })
+        .catch(err => {
+            dispatch({ type: 'GET_ALL_USUARIOS_FAILED', payload: err })
+        });
+}
+
+export const deleteUsuario = (userid) => dispatch => {
+    dispatch({ type: 'DELETE_USUARIO_REQUEST' })
+
+    axios
+        .delete("http://localhost:3000/api/usuarios/deleteusuario", { data: { userid } })
+        .then(res => {
+            dispatch({ type: 'DELETE_USUARIO_SUCCESS', payload: res.data })
+            alert('El usuario se eliminó correctamente')
+            window.location.reload()
+        })
+        .catch(err => {
+            dispatch({ type: 'DELETE_USUARIO_FAILED', payload: err })
+        })
+}

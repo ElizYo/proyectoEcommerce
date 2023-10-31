@@ -1,3 +1,12 @@
+$color_1: white;
+$color_2: black;
+$color_3: #7d7d7d;
+$font-family_1: 'Kanit', sans-serif;
+$background-color_1: #c6c6c6;
+$background-color_2: black;
+$background-color_3: #f1f0f0;
+
+
 h1 {
     font-size: 18px;
     text-align: left;
@@ -12,8 +21,32 @@ h1 {
 .product-container {
     display: flex;
     flex-wrap: wrap;
-    background: #f1f0f0;
+    background: $background-color_3;
     justify-content: space-between;
     padding: 0 5rem; 
   }
-  
+
+.pagination {
+    display: flex;
+    justify-content: center;
+  text-align: center;
+  background-color: $background-color_1; 
+  padding: 10px;
+}
+
+.pagination button {
+  background-color: $background-color_2; 
+  margin-right: 15px;
+  font-size: 15px;
+  color: $color_1; 
+  font-family: $font-family_1;
+  border: none;
+  padding: 5px 10px;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.pagination button:hover {
+  background-color: $color_1; 
+  color: $background-color_2; 
+}

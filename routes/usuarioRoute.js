@@ -104,13 +104,7 @@ router.delete("/deleteusuario", (req, res) => {
 
 router.put("/updateusuario", (req, res) => {
 
-    console.log("Entre");
-
-    console.log(req.body);
-
     const { userid,  updateduser} = req.body;
-
-    console.log(userid, updateduser);
 
     Usuario.findByIdAndUpdate(userid , {
         nombre : updateduser.nombre ,
@@ -121,7 +115,6 @@ router.put("/updateusuario", (req, res) => {
         if(err){
             console.log(userid);
             return res.status(400).json({ message: 'Algo salio mal :(' + err});
-           
         }
         else{
             res.send('Usuario actualizado correctamente')
@@ -130,6 +123,22 @@ router.put("/updateusuario", (req, res) => {
     })
 
 })
+
+
+router.delete("/deleteusuario", (req, res) => {
+
+    Usuario.findByIdAndRemove(req.body.userid , (err)=>{
+
+        if(err){
+            return res.status(400).json({ message: 'Algo salio mal' });
+        }
+        else{
+            res.send('Usuario eliminado correctamente')
+        }
+
+    })
+  
+});
 
 
 module.exports = router

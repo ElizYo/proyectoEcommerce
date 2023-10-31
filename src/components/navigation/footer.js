@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import '../../style/footer.scss'; // Ajusta la ruta al archivo SCSS
+import '../../style/footer.scss';
 
 export default class Footer extends Component {
   constructor() {

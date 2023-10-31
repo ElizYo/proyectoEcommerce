@@ -12,6 +12,7 @@ import Profile from "./pages/profile";
 import Ordenadores from "./pages/ordenadores";
 import Smartphones from "./pages/smartphones";
 import Perifericos from "./pages/perifericos";
+import Admin from "./pages/admin";
 
 export default class App extends Component {
   render() {
@@ -32,6 +33,7 @@ export default class App extends Component {
               <Route exact path="/ordenadores" component={Ordenadores} />
               <Route exact path="/smartphones" component={Smartphones} />
               <Route exact path="/perifericos" component={Perifericos} />
+              <Route exact path="/admin" component={Admin} />
 
 
             </Switch>
