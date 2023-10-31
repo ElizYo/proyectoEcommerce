@@ -3,6 +3,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { getProductoById } from "../../actions/productosActions";
 import { carritoActions } from "../../actions/carritoActions";
 import '../../style/productdesc.scss';
+import Review from "../Review";
 
 export default function Productdesc({ match }) {
 
@@ -47,7 +48,7 @@ export default function Productdesc({ match }) {
           <div className="col-md-6">
             <div className="row align-items-stretch">
               <div className="col-md-6">
-              <div className="m-2 shadow p-3 mb-5 bg-white rounded" style={{ height: "605px" }}>
+                <div className="m-2 shadow p-3 mb-5 bg-white rounded" style={{ height: "605px" }}>
                   <h1>
                     <b className="nombre-product">{product.nombre}</b>
                   </h1>
@@ -68,7 +69,7 @@ export default function Productdesc({ match }) {
                     }}
                   >
                     {[...Array(product.stock).keys()].map((x, i) => {
-                      return <option value={i + 1}>{i + 1}</option>;
+                      return <option key={i} value={i + 1}>{i + 1}</option>;
                     })}
                   </select>
                   <hr />
@@ -86,6 +87,7 @@ export default function Productdesc({ match }) {
                   )}
                 </div>
                 <hr />
+                <Review key={product.id} product={product} />
               </div>
             </div>
           </div>

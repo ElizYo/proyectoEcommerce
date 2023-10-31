@@ -36,8 +36,27 @@ export const getProductoById = (productoid) => (dispatch) => {
     });
 };
 
-/*export const getProductsByText = (filterText) => (dispatch) => {
 
-  dispatch({ type: "GET_PRODUCTS_BY_TEXT", payload: filterText });
+export const addProductoReview = (review, productoid) => (dispatch, getState) => {
+  dispatch({ type: 'ADD_PRODUCT_REVIEW_REQUEST' });
 
-}*/
+  const currentUser = getState().loginReducer.currentUser;
+
+  const data = {
+    review: review, // Datos de revisión
+    productoid: productoid, // ID del producto
+    currentUser: currentUser // Datos del usuario
+  };
+
+  axios.post('http://localhost:3000/api/productos/addreview', data)
+    .then(res => {
+      console.log(res);
+      dispatch({ type: 'ADD_PRODUCT_REVIEW_SUCCESS',payload:res.data });
+      alert('Tu revisión se ha enviado correctamente');
+      window.location.reload();
+    })
+    .catch(err => {
+      dispatch({ type: 'ADD_PRODUCT_REVIEW_FAILED' });
+    });
+}
+

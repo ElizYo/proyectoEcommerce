@@ -1,5 +1,5 @@
 import { combineReducers } from 'redux';
-import { getAllProductosReducer, getProductoByIdReducer, getProductByTextReducer } from './productosReducer'
+import { getAllProductosReducer, getProductoByIdReducer, addProductoReviewReducer } from './productosReducer'
 import { getcarritoReducer } from './carritoReducer'
 import { loginReducer, registerNuevoUsuarioReducer, updateUsuarioReducer } from './usuarioReducer'
 import {createStore , applyMiddleware} from 'redux' 
@@ -10,6 +10,7 @@ import { placeOrderReducer, getOrdersByUserIdReducer } from './pasarelaReducer';
 const rootReducer = combineReducers({
   getAllProductosReducer: getAllProductosReducer,
   getProductoByIdReducer : getProductoByIdReducer,
+  addProductoReviewReducer:addProductoReviewReducer,
   getcarritoReducer : getcarritoReducer,
   registerNuevoUsuarioReducer : registerNuevoUsuarioReducer,
   updateUsuarioReducer: updateUsuarioReducer,

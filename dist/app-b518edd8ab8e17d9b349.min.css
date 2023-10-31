@@ -99,11 +99,26 @@ h1 {
   text-align: 'center';
 }
 
+.h1,
+.rating {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: 50px;
+}
+
 .h1 {
+  font-size: 18px;
   color: black;
 }
 
 .h1-nombre {
+  display: flex;
+  margin-top: 25px;
+  width: 100%;
+  height: 100px;
+  align-items: center;
   font-family: "Kanit", sans-serif;
   font-size: 24px;
   color: black;
@@ -114,6 +129,13 @@ h1 {
 .h1-nombre:hover {
   border: none;
   color: #7d7d7d;
+}
+
+.precio-container {
+  font-family: "Kanit", sans-serif;
+  font-size: 22px;
+  color: red;
+  margin-left: 8px;
 }
 
 a:link {
@@ -127,29 +149,8 @@ a:visited {
 a:active {
   text-decoration: none;
 }
-html {
-  font-size: 62.5%;
-}
-
-*,
-*::after,
-*::before {
-  margin: 0;
-  padding: 0;
-  font-family: 'montserrat';
-}
-
-body {
-  overflow-x: hidden;
-  font-weight: normal;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-rendering: optimizeLegibility;
-  -webkit-tap-highlight-color: transparent;
-}
-
-.app {
-  display: grid;
+.nombre-product {
+  font-family: 'Kanit', sans-serif;
 }
 .form-container {
   display: flex;
@@ -208,6 +209,30 @@ body {
   padding: 10px 20px;
   font-size: 16px;
   margin-top: 10px;
+}
+html {
+  font-size: 62.5%;
+}
+
+*,
+*::after,
+*::before {
+  margin: 0;
+  padding: 0;
+  font-family: 'montserrat';
+}
+
+body {
+  overflow-x: hidden;
+  font-weight: normal;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-rendering: optimizeLegibility;
+  -webkit-tap-highlight-color: transparent;
+}
+
+.app {
+  display: grid;
 }
 @charset "UTF-8";
 /*!
@@ -12670,4 +12695,4 @@ textarea.form-control-lg {
 
 /*# sourceMappingURL=bootstrap.css.map */
 
-/*# sourceMappingURL=app-fc17efd9de180c2870fc.map*/
+/*# sourceMappingURL=app-fe5baa0ffb4409892b3b.map*/
