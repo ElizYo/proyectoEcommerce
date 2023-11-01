@@ -6,8 +6,18 @@ import OrdersList from './listOrdenes';
 import AddProduct from './addNewProduct';
 import ProductsList from './listadoProductos';
 import EditProduct from './editproduct';
+import { useSelector, useDispatch } from "react-redux";
 
 export default function Admin() {
+
+    const getCurrentuser = useSelector((state) => state.loginReducer);
+    const { currentUser } = getCurrentuser;
+
+    if(!currentUser||currentUser.isAdmin===false) {
+        window.location.href = '/'
+        return false;
+    }
+
     return (
         <div className="d-flex align-items-start">
             <div className="nav flex-column nav-pills me-3" id="v-pills-tab" role="tablist" aria-orientation="vertical">

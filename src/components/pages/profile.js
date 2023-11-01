@@ -10,6 +10,12 @@ export default function Profile() {
   const currentUser = loginstate.currentUser;
   const {loading , success, error} = updateUsuarioState
   const dispatch = useDispatch()
+
+  if(!currentUser) {
+    window.location.href = '/'
+    return false;
+  }
+
   const [nombre, setnombre] = useState(currentUser.nombre);
   const [email, setemail] = useState(currentUser.email);
   const [password, setpassword] = useState("");

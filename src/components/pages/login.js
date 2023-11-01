@@ -7,7 +7,7 @@ import Error from "../Error";
 export default function Login() {
     
     const loginreducer = useSelector(state=>state.loginReducer)
-    const { loading, error } = loginreducer
+    const { currentUser, loading, error } = loginreducer
 
     const [usuario, setusuario] = useState("");
     const [password, setpassword] = useState("");
@@ -29,13 +29,19 @@ export default function Login() {
 
     }
 
-    useEffect(() => {
+    /*useEffect(() => {
 
-        if (localStorage.getItem('currentUser')) {
-            window.location.href = '/'
+        if (currentUser) {
+            window.location.href = '/';
+            return false;
         }
 
-    }, [])
+    }, [])*/
+
+    if (currentUser) {
+        window.location.href = '/';
+        return false;
+    }
 
     return (
         <div>

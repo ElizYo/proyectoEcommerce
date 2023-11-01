@@ -5,14 +5,15 @@ import { faShoppingCart } from "@fortawesome/free-solid-svg-icons";
 import { faUser } from "@fortawesome/free-solid-svg-icons";
 import logo from "../../../static/assets/logo.png";
 import '../../style/navbar.scss';
-import { useSelector,useDispatch } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
 import 'bootstrap';
 import { logoutUsuario } from "../../actions/usuarioActions";
 
 const NavigationComponent = () => {
   const getCarrito = useSelector((state) => state.getcarritoReducer);
   const { articles } = getCarrito;
-  const currentUser = JSON.parse(localStorage.getItem("currentUser"));
+  const getCurrentuser = useSelector((state) => state.loginReducer);
+  const { currentUser } = getCurrentuser;
   const dispatch = useDispatch();
   
   return (
@@ -26,18 +27,17 @@ const NavigationComponent = () => {
           <NavLink to="/" className="navbar-link" activeClassName="nav-link-active">
             Home
           </NavLink>
-  
-          <NavLink exact to="/ordenadores" className="navbar-link mobile-home" activeClassName="nav-link-active">
+          {!currentUser ? (<NavLink exact to="/ordenadores" className="navbar-link mobile-home" activeClassName="nav-link-active">
             Ordenadores
-          </NavLink>
+          </NavLink>) : ""}
   
-          <NavLink to="/smartphones" className="navbar-link" activeClassName="nav-link-active">
+          {!currentUser ?(<NavLink to="/smartphones" className="navbar-link" activeClassName="nav-link-active">
             Smartphones
-          </NavLink>
+          </NavLink>) : ""}
   
-          <NavLink to="/perifericos" className="navbar-link" activeClassName="nav-link-active">
+          {!currentUser ?(<NavLink to="/perifericos" className="navbar-link" activeClassName="nav-link-active">
             Periféricos
-          </NavLink>
+          </NavLink>) : ""}
   
           {currentUser ? (
               <div className="dropdown"  style={{ border: 'none', background: 'none' }}>
@@ -45,6 +45,7 @@ const NavigationComponent = () => {
                   {currentUser.nombre}
                 </button>
                 <ul className="dropdown-menu">
+                  {currentUser.isAdmin ? (<li><a className="dropdown-item" href="/admin">Panel Admin</a></li>):""}
                   <li><a className="dropdown-item" href="/profile">Profile</a></li>
                   <li><a className="dropdown-item" href="/orders">Orders</a></li>
                   <li><a className="dropdown-item" onClick={() => dispatch(logoutUsuario())}>Logout</a></li>

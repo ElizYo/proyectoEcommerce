@@ -56,7 +56,8 @@ router.post("/login", (req, res) => {
                    nombre : docs[0].nombre , 
                    _id : docs[0]._id ,
                    usuario : docs[0].usuario,
-                   email : docs[0].email
+                   email : docs[0].email,
+                   isAdmin : docs[0].isAdmin
                }
     
                res.send(user)

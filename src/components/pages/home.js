@@ -13,12 +13,30 @@ export default function Home() {
 
   const { products } = getallproductsstate;
 
-  const numPaginas = 9;
+  const elemXpagina = 5
+
+  const numPaginas = Math.ceil(products.length / elemXpagina);
+
   const [paginaActual, setCurrentPage] = useState(1);
 
-  const indexOfUltimoProducto = paginaActual * numPaginas;
-  const indexOfPrimerProducto = indexOfUltimoProducto - numPaginas;
+  const indexOfPrimerProducto = (paginaActual - 1) * elemXpagina;
+
+  const indexOfUltimoProducto = indexOfPrimerProducto + elemXpagina
+
   const currentProducts = products.slice(indexOfPrimerProducto, indexOfUltimoProducto);
+
+  console.log(currentProducts)
+
+  const handleNextPage = () => {
+      setCurrentPage(paginaActual + 1);
+    };
+  
+    const handlePrevPage = () => {
+      setCurrentPage(paginaActual - 1);
+    };
+
+    console.log("paginaac",paginaActual)
+  
 
   const dispatch = useDispatch();
 
@@ -26,13 +44,6 @@ export default function Home() {
     dispatch(getAllProductos());
   }, []);
 
-  const handleNextPage = () => {
-    setCurrentPage(paginaActual + 1);
-  };
-
-  const handlePrevPage = () => {
-    setCurrentPage(paginaActual - 1);
-  };
 
   return (
     <div>
@@ -44,13 +55,17 @@ export default function Home() {
         ))}
       </div>
       <div className="pagination">
-        {paginaActual > 1 && (
-          <button onClick={handlePrevPage}>Anterior</button>
-        )}
-        {currentProducts.length === numPaginas && (
-          <button onClick={handleNextPage}>Siguiente</button>
-        )}
-      </div>
-    </div>
+                {paginaActual > 1 && (
+                <button onClick={handlePrevPage}>Anterior</button>
+                )}
+                {[...Array(numPaginas).keys()].map(num => {
+                    let classItem=`h3 border p-3 cursor-pointer ${(paginaActual==num+1?"bg-black text-light":"")}`;
+                    return (<div className={classItem} onClick={() => {setCurrentPage(num+1)}}><span className="user-select-none">{num+1}</span></div>)
+                })}
+                { paginaActual < numPaginas && (
+                <button onClick={handleNextPage}>Siguiente</button>
+                )}
+            </div>
+        </div>
   );
 }

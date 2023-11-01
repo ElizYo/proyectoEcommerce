@@ -43,9 +43,9 @@ export const addProductoReview = (review, productoid) => (dispatch, getState) =>
   const currentUser = getState().loginReducer.currentUser;
 
   const data = {
-    review: review, // Datos de revisión
-    productoid: productoid, // ID del producto
-    currentUser: currentUser // Datos del usuario
+    review: review, 
+    productoid: productoid, 
+    currentUser: currentUser 
   };
 
   axios.post('http://localhost:3000/api/productos/addreview', data)
