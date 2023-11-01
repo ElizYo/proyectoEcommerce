@@ -95,6 +95,29 @@ router.post("/addproduct", (req, res) => {
     });
 });
 
+router.post("/updateproduct/:productid", (req, res) => {
+
+    Producto.findByIdAndUpdate(req.body.productid , {
+        nombre : req.body.updatedproduct.nombre,
+        precio : req.body.updatedproduct.precio,
+        stock : req.body.updatedproduct.stock,
+        image : req.body.updatedproduct.image,
+        categoria : req.body.updatedproduct.categoria,
+        descripcion : req.body.updatedproduct.descripcion
+
+    } , (err)=>{
+
+        if(err){
+            return res.status(400).json({ message: 'Something went wrong'+err });
+        }
+        else{
+            res.send('Product Updated Successfully')
+        }
+
+    })
+  
+});
+
 
 router.delete("/deleteproduct", (req, res) => {
     Producto.findByIdAndRemove(req.body.productoid, (err) => {

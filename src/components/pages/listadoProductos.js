@@ -76,10 +76,7 @@ export default function ProductsList() {
                                             dispatch(deleteproducto(product._id));
                                         }}
                                     ></i>
-                                    <Link
-                                        to={`/admin/editproduct/${product._id}`}
-                                        onClick={() => changeTab("edit-product")}
-                                    >
+                                    <Link to={`/admin/editproduct/${product._id}`}>
                                         <i className="bi bi-pen"></i>
                                     </Link>
                                 </td>

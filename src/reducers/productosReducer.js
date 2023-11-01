@@ -42,6 +42,30 @@ export const getProductoByIdReducer = (state = { product: {} }, action) => {
 
 }
 
+export const updateProductReducer = (state = {}, action) => {
+  switch (action.type) {
+    case 'PRODUCT_UPDATE_REQUEST':
+      return {
+        ...state,
+        loading: true,
+      };
+    case 'PRODUCT_UPDATE_SUCCESS':
+      return {
+        ...state,
+        loading: false,
+        success: true,
+      };
+    case 'PRODUCT_UPDATE_FAILED':
+      return {
+        ...state,
+        loading: false,
+        error: 'El producto ya existe',
+      };
+    default:
+      return state;
+  }
+}
+
 export const addProductReducer = (state = {}, action) => {
   switch (action.type) {
     case 'PRODUCT_REGISTER_REQUEST':
