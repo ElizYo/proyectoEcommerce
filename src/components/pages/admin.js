@@ -5,6 +5,7 @@ import OrdersList from './listOrdenes';
 import AddProduct from './addNewProduct';
 import ProductsList from './listadoProductos';
 import EditProduct from './editproduct';
+
 import { useSelector, useDispatch } from "react-redux";
 import'../../style/admin.scss';
 
@@ -16,24 +17,25 @@ export default function Admin() {
         window.location.href = '/';
         return false;
     }
-
+   
     const [selectedTab, setSelectedTab] = useState("users");
-
     const renderContent = () => {
         switch (selectedTab) {
-            case "users":
-                return <UsuarioList />;
-            case "products":
-                return <ProductsList />;
-            case "add-product":
-                return <AddProduct />;
-            case "orders":
-                return <OrdersList />;
-            default:
-                return <UsuarioList />;
+          case "users":
+            return <UsuarioList />;
+          case "products":
+            return <ProductsList/>;
+          case "add-product":
+            return <AddProduct />;
+          case "orders":
+            return <OrdersList />;
+          case "edit-product":
+            return <EditProduct />;
+          default:
+            return <UsuarioList />;
         }
-    };
-
+      };
+      
     return (
         <div className="admin-container">
             <div className="nav">

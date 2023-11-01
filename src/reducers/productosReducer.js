@@ -42,6 +42,54 @@ export const getProductoByIdReducer = (state = { product: {} }, action) => {
 
 }
 
+export const addProductReducer = (state = {}, action) => {
+  switch (action.type) {
+    case 'PRODUCT_REGISTER_REQUEST':
+      return {
+        ...state,
+        loading: true,
+      };
+    case 'PRODUCT_REGISTER_SUCCESS':
+      return {
+        ...state,
+        loading: false,
+        success: true,
+      };
+    case 'PRODUCT_REGISTER_FAILED':
+      return {
+        ...state,
+        loading: false,
+        error: 'El producto ya existe',
+      };
+    default:
+      return state;
+  }
+};
+
+
+export const deleteProductReducer = (state = {}, action) => {
+
+  switch (action.type) {
+      case 'DELETE_PRODUCT_REQUEST': return {
+          ...state,
+          loading: true
+      }
+      case 'DELETE_PRODUCT_SUCCESS': return {
+          ...state,
+          loading: false,
+          success: true
+      }
+      case 'DELETE_PRODUCT_FAILED': return {
+          ...state,
+          loading: false,
+          error: action.payload
+      }
+
+      default: return state
+  }
+
+};
+
 export const addProductoReviewReducer = (state = { loading: true }, action) => {
     switch (action.type) {
       case 'ADD_PRODUCT_REVIEW_REQUEST':

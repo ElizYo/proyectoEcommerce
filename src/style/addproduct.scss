@@ -1,0 +1,34 @@
+@import 'mixin';
+.add-product-container{
+    @include flex-center;
+    flex-direction: column;
+    margin-top: 10px;
+}
+.form-container {
+    height: auto;
+  input {
+    margin: 10px 0; 
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    width: 100%; 
+  }
+
+  textarea {
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    width: 100%; 
+  }
+
+  button {
+    @include button-styles;
+    cursor: pointer;
+    transition: background-color 0.3s;
+    margin-top: 10px; 
+
+    &:hover {
+      background-color: #181b1e;
+    }
+  }
+}

@@ -63,19 +63,53 @@ router.get("/obtenerTodasCategorias", (req, res) => {
 });
 
 
-/*
+router.post("/addproduct", (req, res) => {
+    const { nombre, precio, stock, image, categoria, descripcion } = req.body;
+
+    Producto.findOne({ nombre: nombre }, (err, existingProduct) => {
+        if (err) {
+            return res.status(500).json({ message: 'Error al buscar el producto en la base de datos' });
+        }
+        
+        if (existingProduct) {
+            return res.status(400).json({ message: 'El producto ya existe en la base de datos' });
+        } else {
+            const nuevoProducto = new Producto({
+                nombre: nombre,
+                precio: precio,
+                stock: stock,
+                image: image,
+                categoria: categoria,
+                descripcion: descripcion
+            });
+
+            nuevoProducto.save(err => {
+                if (!err) {
+                    res.status(201).json({ message: 'Producto agregado correctamente' });
+                } else {
+                    res.status(500).json({ message: 'No se pudo agregar el producto correctamente' });
+                    console.error(err);
+                }
+            });
+        }
+    });
+});
+
+
 router.delete("/deleteproduct", (req, res) => {
-    Usuario.findByIdAndRemove(req.body.product, (err) => {
+    Producto.findByIdAndRemove(req.body.productoid, (err) => {
 
         if (err) {
             return res.status(400).json({ message: 'Algo salio mal' });
         }
         else {
-            res.send('Usuario se elimino correctamente')
+            res.send('Producto eliminado correctamente')
         }
 
     })
-});*/
+});
+
+
 
 router.post("/addreview", async (req, res) => {
     const { review, productoid, currentUser } = req.body;

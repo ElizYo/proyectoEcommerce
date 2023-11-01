@@ -1,7 +1,7 @@
 import React from "react";
 import { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { deleteProduct, getAllProductos } from "../../actions/productosActions";
+import { deleteproducto, getAllProductos } from "../../actions/productosActions";
 import { Link } from 'react-router-dom';
 import Error from "../Error";
 import Loader from "../Loader";
@@ -68,16 +68,18 @@ export default function ProductsList() {
                                 <td style={{ width: '450px' }}>{product.nombre}</td>
                                 <td>{product.precio}</td>
                                 <td>{product.stock}</td>
-                                <td>{product._id}</td>
                                 <td>
                                     <i
                                         className="bi bi-trash"
                                         style={{ marginRight: '10px' }}
                                         onClick={() => {
-                                            dispatch(deleteProduct(product._id));
+                                            dispatch(deleteproducto(product._id));
                                         }}
                                     ></i>
-                                    <Link to={`/admin/editproduct/${product._id}`}>
+                                    <Link
+                                        to={`/admin/editproduct/${product._id}`}
+                                        onClick={() => changeTab("edit-product")}
+                                    >
                                         <i className="bi bi-pen"></i>
                                     </Link>
                                 </td>

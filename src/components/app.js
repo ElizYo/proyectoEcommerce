@@ -13,6 +13,7 @@ import Ordenadores from "./pages/ordenadores";
 import Smartphones from "./pages/smartphones";
 import Perifericos from "./pages/perifericos";
 import Admin from "./pages/admin";
+import EditProduct from "./pages/editproduct";
 
 export default class App extends Component {
   render() {
@@ -34,7 +35,7 @@ export default class App extends Component {
               <Route exact path="/smartphones" component={Smartphones} />
               <Route exact path="/perifericos" component={Perifericos} />
               <Route exact path="/admin" component={Admin} />
-
+              <Route exact path="/admin/editproduct/:productid" component={EditProduct} />
 
             </Switch>
           </div>
