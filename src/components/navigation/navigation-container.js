@@ -29,7 +29,7 @@ const NavigationComponent = () => {
           </NavLink>
 
 
-          {!currentUser ? (
+          {!currentUser || (currentUser && !currentUser.isAdmin) ? (
             <NavLink exact to="/ordenadores" className="navbar-link mobile-home" activeClassName="nav-link-active">
               Ordenadores
             </NavLink>
@@ -37,7 +37,7 @@ const NavigationComponent = () => {
             ""
           )}
 
-          {!currentUser ? (
+          {!currentUser || (currentUser && !currentUser.isAdmin) ? (
             <NavLink to="/smartphones" className="navbar-link" activeClassName="nav-link-active">
               Smartphones
             </NavLink>
@@ -45,7 +45,7 @@ const NavigationComponent = () => {
             ""
           )}
 
-          {!currentUser ? (
+          {!currentUser || (currentUser && !currentUser.isAdmin) ? (
             <NavLink to="/perifericos" className="navbar-link" activeClassName="nav-link-active">
               Periféricos
             </NavLink>
