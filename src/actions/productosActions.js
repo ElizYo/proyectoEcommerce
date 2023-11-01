@@ -6,7 +6,7 @@ export const getAllProductos = () => (dispatch) => {
   axios
     .get("http://localhost:3000/api/productos/obtenertodosproductos")
     .then((res) => {
-      console.log(res.json);
+      //console.log(res.data);
 
       dispatch({ type: "GET_PRODUCTS_SUCCESS", payload: res.data });
     })

@@ -35,8 +35,11 @@ export const loginUsuario = (user) => dispatch => {
 
             localStorage.setItem('currentUser', JSON.stringify(res.data))
 
-            window.location.href = '/'
-
+            if (res.data.isAdmin) {
+                window.location.href = '/admin';
+            } else {
+                window.location.href = '/';
+            }
         })
         .catch(err => {
             dispatch({ type: 'USER_LOGIN_FAILED', payload: err })
@@ -45,7 +48,6 @@ export const loginUsuario = (user) => dispatch => {
         });
 
 }
-
 
 export const logoutUsuario = () => dispatch => {
 

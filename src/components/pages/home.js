@@ -1,49 +1,38 @@
-import React from "react";
-import Product from './product';
-import { useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { getAllProductos } from "../../actions/productosActions";
+import Product from './product';
 import '../../style/index.scss';
 
 export default function Home() {
-
-  const getallproductsstate = useSelector(
-    (state) => state.getAllProductosReducer
-  );
-
+  const getallproductsstate = useSelector((state) => state.getAllProductosReducer);
   const { products } = getallproductsstate;
-
-  const elemXpagina = 5
-
-  const numPaginas = Math.ceil(products.length / elemXpagina);
-
+  const elemXpagina = 5;
   const [paginaActual, setCurrentPage] = useState(1);
-
-  const indexOfPrimerProducto = (paginaActual - 1) * elemXpagina;
-
-  const indexOfUltimoProducto = indexOfPrimerProducto + elemXpagina
-
-  const currentProducts = products.slice(indexOfPrimerProducto, indexOfUltimoProducto);
-
-  console.log(currentProducts)
+  const [numPaginas, setNumPaginas] = useState(1);
 
   const handleNextPage = () => {
-      setCurrentPage(paginaActual + 1);
-    };
-  
-    const handlePrevPage = () => {
-      setCurrentPage(paginaActual - 1);
-    };
+    setCurrentPage(paginaActual + 1);
+  };
 
-    console.log("paginaac",paginaActual)
-  
+  const handlePrevPage = () => {
+    setCurrentPage(paginaActual - 1);
+  };
 
   const dispatch = useDispatch();
 
   useEffect(() => {
     dispatch(getAllProductos());
-  }, []);
+  }, [dispatch]);
 
+  useEffect(() => {
+    const calculatedNumPaginas = Math.ceil(products.length / elemXpagina);
+    setNumPaginas(calculatedNumPaginas);
+  }, [products]);
+
+  const indexOfPrimerProducto = (paginaActual - 1) * elemXpagina;
+  const indexOfUltimoProducto = indexOfPrimerProducto + elemXpagina;
+  const currentProducts = products.slice(indexOfPrimerProducto, indexOfUltimoProducto);
 
   return (
     <div>
@@ -55,17 +44,23 @@ export default function Home() {
         ))}
       </div>
       <div className="pagination">
-                {paginaActual > 1 && (
-                <button onClick={handlePrevPage}>Anterior</button>
-                )}
-                {[...Array(numPaginas).keys()].map(num => {
-                    let classItem=`h3 border p-3 cursor-pointer ${(paginaActual==num+1?"bg-black text-light":"")}`;
-                    return (<div className={classItem} onClick={() => {setCurrentPage(num+1)}}><span className="user-select-none">{num+1}</span></div>)
-                })}
-                { paginaActual < numPaginas && (
-                <button onClick={handleNextPage}>Siguiente</button>
-                )}
-            </div>
-        </div>
+        {paginaActual > 1 && (
+          <button onClick={handlePrevPage}>Anterior</button>
+        )}
+        {numPaginas > 1 && ( // Mostrar números de página solo si hay más de una página
+          [...Array(numPaginas).keys()].map(num => {
+            let classItem = `h3 border p-3 cursor-pointer ${(paginaActual === num + 1 ? "bg-black text-light" : "")}`;
+            return (
+              <div key={num} className={classItem} onClick={() => { setCurrentPage(num + 1) }}>
+                <span className="user-select-none">{num + 1}</span>
+              </div>
+            );
+          })
+        )}
+        {paginaActual < numPaginas && (
+          <button onClick={handleNextPage}>Siguiente</button>
+        )}
+      </div>
+    </div>
   );
 }

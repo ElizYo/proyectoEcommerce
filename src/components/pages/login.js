@@ -29,18 +29,16 @@ export default function Login() {
 
     }
 
-    /*useEffect(() => {
+    if (currentUser) {
 
-        if (currentUser) {
+        if(currentUser.isAdmin){
+            window.location.href = '/admin';
+            return false;
+        } else {
             window.location.href = '/';
             return false;
         }
 
-    }, [])*/
-
-    if (currentUser) {
-        window.location.href = '/';
-        return false;
     }
 
     return (
