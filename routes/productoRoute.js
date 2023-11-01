@@ -61,6 +61,22 @@ router.get("/obtenerTodasCategorias", (req, res) => {
         }
     });
 });
+
+
+/*
+router.delete("/deleteproduct", (req, res) => {
+    Usuario.findByIdAndRemove(req.body.product, (err) => {
+
+        if (err) {
+            return res.status(400).json({ message: 'Algo salio mal' });
+        }
+        else {
+            res.send('Usuario se elimino correctamente')
+        }
+
+    })
+});*/
+
 router.post("/addreview", async (req, res) => {
     const { review, productoid, currentUser } = req.body;
 
