@@ -15,7 +15,7 @@ export default function AddProduct() {
     const addproduct = (e) => {
         e.preventDefault();
 
-        const product = {
+        /*const product = {
             nombre,
             precio,
             stock,
@@ -23,8 +23,21 @@ export default function AddProduct() {
             categoria,
             descripcion,
         };
-
         dispatch(addNewProduct(product));
+
+        */
+
+
+        const formData = new FormData();
+        formData.append('nombre', nombre);
+        formData.append('precio', precio);
+        formData.append('stock', stock);
+        formData.append('image', image);
+        formData.append('categoria', categoria);
+        formData.append('descripcion', descripcion);
+
+        dispatch(addNewProduct(formData));
+
     };
 
     return (
@@ -51,10 +64,9 @@ export default function AddProduct() {
                         onChange={(e) => setStock(e.target.value)}
                     />
                     <input
-                        type="text"
-                        placeholder="URL de la imagen"
-                        value={image}
-                        onChange={(e) => setImagen(e.target.value)}
+                        type="file"
+                        placeholder="Sube tu imagen"
+                        onChange={(e) => setImagen(e.target.files[0])}
                     />
                     <input
                         type="text"

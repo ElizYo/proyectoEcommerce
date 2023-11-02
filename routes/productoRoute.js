@@ -2,6 +2,13 @@ const express = require("express");
 const Producto = require("../modelos/productoModelo");
 const router = express.Router();
 router.use(express.json());
+const fs = require('fs');
+const path = require('path');
+const multiparty = require('multiparty');
+const { Console } = require("console");
+
+// Configura la carpeta de destino para guardar los archivos
+const uploadDir = path.join(__dirname, '../static/assets/images');
 
 router.get("/obtenertodosproductos", (req, res) => {
 
@@ -64,59 +71,136 @@ router.get("/obtenerTodasCategorias", (req, res) => {
 
 
 router.post("/addproduct", (req, res) => {
-    const { nombre, precio, stock, image, categoria, descripcion } = req.body;
 
-    Producto.findOne({ nombre: nombre }, (err, existingProduct) => {
+    const form = new multiparty.Form({ uploadDir });
+
+    form.parse(req, (err, fields, files) => {
+        console.log(fields);
         if (err) {
-            return res.status(500).json({ message: 'Error al buscar el producto en la base de datos' });
+            console.log("file_error", err);
+            return res.status(500).send('Error al procesar el archivo.');
         }
-        
-        if (existingProduct) {
-            return res.status(400).json({ message: 'El producto ya existe en la base de datos' });
-        } else {
-            const nuevoProducto = new Producto({
-                nombre: nombre,
-                precio: precio,
-                stock: stock,
-                image: image,
-                categoria: categoria,
-                descripcion: descripcion
-            });
 
-            nuevoProducto.save(err => {
-                if (!err) {
-                    res.status(201).json({ message: 'Producto agregado correctamente' });
-                } else {
-                    res.status(500).json({ message: 'No se pudo agregar el producto correctamente' });
-                    console.error(err);
+        const nombre = fields.nombre[0];
+        const precio = fields.precio[0];
+        const stock = fields.stock[0];
+        const categoria = fields.categoria[0];
+        const descripcion = fields.descripcion[0];
+
+
+        Producto.findOne({ nombre: nombre }, (err, existingProduct) => {
+            if (err) {
+                return res.status(500).json({ message: 'Error al buscar el producto en la base de datos' });
+            }
+
+            if (existingProduct) {
+                return res.status(400).json({ message: 'El producto ya existe en la base de datos' });
+                
+            } else {
+               
+                const nuevoProducto  = {
+                    nombre: nombre,
+                    precio: precio,
+                    stock: stock,
+                    categoria: categoria,
+                    descripcion: descripcion
+                };
+
+
+                if (files.image != undefined) {
+
+                    // files contiene la información del archivo subido
+                    const file = files.image[0];
+                    const originalFileName = file.originalFilename;
+                    const tempPath = file.path;
+        
+                    // Mueve el archivo a su ubicación final
+                    const targetPath = path.join(uploadDir, originalFileName);
+        
+                    nuevoProducto.image = originalFileName;
+        
+                    fs.rename(tempPath, targetPath, (err) => {
+        
+                        if (err) {
+                            return res.status(500).send('Error al mover el archivo.');
+                        }
+        
+                    })
                 }
-            });
-        }
+
+                const productoNuevo = new Producto(nuevoProducto);
+
+                productoNuevo.save(err => {
+                    if (!err) {
+                        res.status(201).json({ message: 'Producto agregado correctamente' });
+                    } else {
+                        res.status(500).json({ message: 'No se pudo agregar el producto correctamente' });
+                        console.error(err);
+                    }
+                });
+            }
+        });
     });
 });
 
-router.post("/updateproduct/:productid", (req, res) => {
+router.put("/updateproduct", (req, res) => {
 
-    Producto.findByIdAndUpdate(req.body.productid , {
-        nombre : req.body.updatedproduct.nombre,
-        precio : req.body.updatedproduct.precio,
-        stock : req.body.updatedproduct.stock,
-        image : req.body.updatedproduct.image,
-        categoria : req.body.updatedproduct.categoria,
-        descripcion : req.body.updatedproduct.descripcion
+    const form = new multiparty.Form({ uploadDir });
 
-    } , (err)=>{
+    form.parse(req, (err, fields, files) => {
 
-        if(err){
-            return res.status(400).json({ message: 'Something went wrong'+err });
-        }
-        else{
-            res.send('Product Updated Successfully')
+        if (err) {
+            console.log("file_error", err);
+            return res.status(500).send('Error al procesar el archivo.');
         }
 
-    })
-  
+        let product_id = fields.producto_id[0];
+
+        let objectDataToUpdate = {
+            nombre: fields.nombre[0],
+            precio: fields.precio[0],
+            stock: fields.stock[0],
+            categoria: fields.categoria[0],
+            descripcion: fields.descripcion[0]
+
+        }
+
+        if (files.image != undefined) {
+
+            // files contiene la información del archivo subido
+            const file = files.image[0];
+            const originalFileName = file.originalFilename;
+            const tempPath = file.path;
+
+            // Mueve el archivo a su ubicación final
+            const targetPath = path.join(uploadDir, originalFileName);
+
+            objectDataToUpdate.image = originalFileName;
+
+            fs.rename(tempPath, targetPath, (err) => {
+
+                if (err) {
+                    return res.status(500).send('Error al mover el archivo.');
+                }
+
+            })
+        }
+
+        Producto.findByIdAndUpdate(product_id, objectDataToUpdate, (err) => {
+
+            if (err) {
+                return res.status(400).json({ message: 'Something went wrong' + err });
+            }
+            else {
+                res.send('Product Updated Successfully')
+            }
+
+        })
+    });
+
+
 });
+
 
 
 router.delete("/deleteproduct", (req, res) => {

@@ -50,8 +50,20 @@ module.exports = webpackMerge(webpackCommon, {
               sourceMap: true,
               sourceMapContents: true
             }
-          }
+          },
+          
         ]
+      },
+      {
+        test: /.(png|jpg|jpeg|gif|svg)$/,
+        use: [
+          {
+            loader: 'file-loader', // Puedes usar 'url-loader' en lugar de 'file-loader' si lo prefieres
+            options: {
+              name: 'images/[name].[ext]', // Ruta de salida para las imágenes
+            },
+          },
+        ],
       }
     ]
 

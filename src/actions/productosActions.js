@@ -51,17 +51,23 @@ export const deleteproducto = (productoid) => (dispatch) => {
     });
 }
 
-export const updateProducto = (productid, productoModel) => (dispatch) => {
+export const updateProducto = (productoModel) => (dispatch) => {
+
   dispatch({ type: "UPDATE_PRODUCT_REQUEST" });
 
   axios
-    .put(`http://localhost:3000/api/productos/updateproduct/${productid}`, productoModel)
+    .put(`http://localhost:3000/api/productos/updateproduct`, productoModel, {
+      headers: {
+        'Content-Type': 'multipart/form-data'
+      }
+    })
     .then((res) => {
       dispatch({ type: "UPDATE_PRODUCT_SUCCESS", payload: res.data });
       alert("El producto se ha actualizado correctamente");
       window.location.reload("/admin/listadoproductos");
     })
     .catch((err) => {
+      console.log(err);
       dispatch({ type: "UPDATE_PRODUCT_FAILED", payload: err });
     });
 }
@@ -69,19 +75,15 @@ export const updateProducto = (productid, productoModel) => (dispatch) => {
 export const addNewProduct = (product) => (dispatch, getState) => {
   dispatch({ type: 'ADD_PRODUCT_REQUEST' });
 
-  const currentUser = getState().loginReducer.currentUser;
+  //const currentUser = getState().loginReducer.currentUser;
 
-  const data = {
-    nombre: product.nombre,
-    precio: product.precio,
-    stock: product.stock,
-    image: product.image,
-    categoria: product.categoria,
-    descripcion: product.descripcion,
-    currentUser: currentUser
-  };
+  //product.currentUser = currentUser;
 
-  axios.post('http://localhost:3000/api/productos/addproduct', data)
+  axios.post('http://localhost:3000/api/productos/addproduct', product, {
+    headers: {
+      'Content-Type': 'multipart/form-data'
+    }
+  })
     .then(res => {
       console.log(res);
       dispatch({ type: 'ADD_PRODUCT_SUCCESS', payload: res.data });
@@ -92,22 +94,6 @@ export const addNewProduct = (product) => (dispatch, getState) => {
       dispatch({ type: 'ADD_PRODUCT_FAILED' });
     });
 }
-
-export const updateProduct = (productid, updatedProductData) => (dispatch) => {
-  dispatch({ type: "UPDATE_PRODUCT_REQUEST" });
-
-  axios
-  .put(`http://localhost:3000/api/productos/updateproduct/${productid}`, productoModel)
-    .then((res) => {
-      dispatch({ type: "UPDATE_PRODUCT_SUCCESS", payload: res.data });
-      alert("El producto se ha actualizado correctamente");
-      window.location.reload("/admin/listadoproductos");
-    })
-    .catch((err) => {
-      dispatch({ type: "UPDATE_PRODUCT_FAILED", payload: err });
-      // Maneja el error como desees, por ejemplo, mostrando un mensaje de error.
-    });
-};
 
 export const addProductoReview = (review, productoid) => (dispatch, getState) => {
   dispatch({ type: 'ADD_PRODUCT_REVIEW_REQUEST' });

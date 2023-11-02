@@ -38,7 +38,7 @@ export default function Productdesc({ match }) {
           <div className="col-md-6">
             <div className="card p-2 m-3 shadow p-3 mb-5 bg-white rounded" style={{ maxWidth: "none" }}>
               <img
-                src={product.image}
+                src={"/assets/images/" + product.image}
                 alt={product.nombre}
                 className="img-fluid m-3 bigimg mx-auto"
                 style={{ width: "560px", height: "560px" }}

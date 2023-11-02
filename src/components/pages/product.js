@@ -11,7 +11,7 @@ export default function Product({ product }) {
     <div className='card item-card px-4 py-3'>
       <Link to={`/product/${product._id}`}>
         <div className='productStyle'>
-          <img src={product.image} className='image-fluid' />
+        <img src={"/assets/images/" + product.image} className='image-fluid' />
           <div className="item-info">
             <div className="h1-nombre">{product.nombre}</div>
             <div className="h1">Precio: <span className="precio-container">{product.precio.toLocaleString('es-ES', { style: 'currency', currency: 'EUR' })}</span></div>

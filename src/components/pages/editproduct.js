@@ -12,7 +12,7 @@ export default function EditProduct({ match }) {
     const [nombre, setNombre] = useState("");
     const [precio, setPrecio] = useState("");
     const [stock, setStock] = useState("");
-    const [image, setImagen] = useState("");
+    const [image, setImagen] = useState(null);
     const [categoria, setCategoria] = useState("");
     const [descripcion, setDescripcion] = useState("");
 
@@ -28,7 +28,6 @@ export default function EditProduct({ match }) {
                 setNombre(product.nombre);
                 setPrecio(product.precio);
                 setStock(product.stock);
-                setImagen(product.image);
                 setCategoria(product.categoria);
                 setDescripcion(product.descripcion);
             } else {
@@ -38,9 +37,13 @@ export default function EditProduct({ match }) {
             dispatch(getProductoById(match.params.productid));
         }
     }, [dispatch, product]);
+
     function editproduct(e) {
+        
         e.preventDefault();
-        const productoModel = {
+
+        /*const productoModel = {
+            product_id: match.params.productid,
             nombre: nombre,
             precio: precio,
             stock: stock,
@@ -48,10 +51,21 @@ export default function EditProduct({ match }) {
             categoria: categoria,
             descripcion: descripcion,
 
-        };
+        };*/
 
-        dispatch(updateProducto(match.params.productid, productoModel));
+        const formData = new FormData();
+        formData.append('producto_id', String(match.params.productid));
+        formData.append('nombre', nombre);
+        formData.append('precio', precio);
+        formData.append('stock', stock);
+        formData.append('image', image);
+        formData.append('categoria', categoria);
+        formData.append('descripcion', descripcion);
+
+        dispatch(updateProducto(formData));
     }
+
+    
 
 
     return (
@@ -82,12 +96,10 @@ export default function EditProduct({ match }) {
                         value={stock}
                         onChange={(e) => setStock(e.target.value)}
                     />
-
-                    <input
-                        type="text"
-                        placeholder="URL de la imagen"
-                        value={image}
-                        onChange={(e) => setImagen(e.target.value)}
+                    <input 
+                        type="file"
+                        placeholder="Sube tu imagen"
+                        onChange={(e) => setImagen(e.target.files[0])}
                     />
 
                     <input
