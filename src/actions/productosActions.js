@@ -4,7 +4,7 @@ export const getAllProductos = () => (dispatch) => {
   dispatch({ type: "GET_PRODUCTS_REQUEST" });
 
   axios
-    .get("http://localhost:3000/api/productos/obtenertodosproductos")
+    .get("/api/productos/obtenertodosproductos")
     .then((res) => {
       //console.log(res.data);
 
@@ -23,7 +23,7 @@ export const getProductoById = (productoid) => (dispatch) => {
   dispatch({ type: "GET_PRODUCTOBYID_REQUEST" });
 
   axios
-    .get(`http://localhost:3000/api/productos/productobyid?id=${productoid}`, {})
+    .get(`/api/productos/productobyid?id=${productoid}`, {})
     .then((res) => {
 
       console.log("Action data", res.data);
@@ -40,7 +40,7 @@ export const deleteproducto = (productoid) => (dispatch) => {
   dispatch({ type: "DELETE_PRODUCTO_REQUEST" });
 
   axios
-    .delete(`http://localhost:3000/api/productos/deleteproduct`, { data: { productoid } })
+    .delete(`/api/productos/deleteproduct`, { data: { productoid } })
     .then((res) => {
       dispatch({ type: "DELETE_PRODUCTO_SUCCESS", payload: res.data });
       alert('El producto se eliminó correctamente')
@@ -56,7 +56,7 @@ export const updateProducto = (productoModel) => (dispatch) => {
   dispatch({ type: "UPDATE_PRODUCT_REQUEST" });
 
   axios
-    .put(`http://localhost:3000/api/productos/updateproduct`, productoModel, {
+    .put(`/api/productos/updateproduct`, productoModel, {
       headers: {
         'Content-Type': 'multipart/form-data'
       }
@@ -79,7 +79,7 @@ export const addNewProduct = (product) => (dispatch, getState) => {
 
   //product.currentUser = currentUser;
 
-  axios.post('http://localhost:3000/api/productos/addproduct', product, {
+  axios.post('/api/productos/addproduct', product, {
     headers: {
       'Content-Type': 'multipart/form-data'
     }
@@ -106,7 +106,7 @@ export const addProductoReview = (review, productoid) => (dispatch, getState) =>
     currentUser: currentUser
   };
 
-  axios.post('http://localhost:3000/api/productos/addreview', data)
+  axios.post('/api/productos/addreview', data)
     .then(res => {
       console.log(res);
       dispatch({ type: 'ADD_PRODUCT_REVIEW_SUCCESS', payload: res.data });

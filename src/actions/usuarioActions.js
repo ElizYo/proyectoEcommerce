@@ -6,7 +6,7 @@ export const registrarNuevoUsuario = (usuario) => dispatch => {
     dispatch({ type: 'USER_REGISTER_REQUEST' })
 
     axios
-        .post("http://localhost:3000/api/usuarios/register", usuario)
+        .post("/api/usuarios/register", usuario)
         .then(res => {
             dispatch({ type: 'USER_REGISTER_SUCCESS' })
 
@@ -27,7 +27,7 @@ export const loginUsuario = (user) => dispatch => {
     dispatch({ type: 'USER_LOGIN_REQUEST' })
 
     axios
-        .post("http://localhost:3000/api/usuarios/login", user)
+        .post("/api/usuarios/login", user)
         .then(res => {
             dispatch({ type: 'USER_LOGIN_SUCCESS', payload: user })
 
@@ -66,7 +66,7 @@ export const updateUsuario = (userid, updateduser) => (dispatch, getState) => {
     console.log(updateduser);
 
     axios
-        .put("http://localhost:3000/api/usuarios/updateusuario", { userid: userid, updateduser: updateduser })
+        .put("/api/usuarios/updateusuario", { userid: userid, updateduser: updateduser })
         .then(res => {
 
             dispatch({ type: 'USER_UPDATE_SUCCESS', payload: updateduser })
@@ -85,7 +85,7 @@ export const updateUsuario = (userid, updateduser) => (dispatch, getState) => {
 
 export const getAllUsuarios = () => dispatch => {
     axios
-        .get("http://localhost:3000/api/usuarios/getallusuarios")
+        .get("/api/usuarios/getallusuarios")
         .then(res => {
             dispatch({ type: 'GET_ALL_USUARIOS_SUCCESS', payload: res.data })
         })
@@ -98,7 +98,7 @@ export const deleteUsuario = (userid) => dispatch => {
     dispatch({ type: 'DELETE_USUARIO_REQUEST' })
 
     axios
-        .delete("http://localhost:3000/api/usuarios/deleteusuario", { data: { userid } })
+        .delete("/api/usuarios/deleteusuario", { data: { userid } })
         .then(res => {
             dispatch({ type: 'DELETE_USUARIO_SUCCESS', payload: res.data })
             alert('El usuario se eliminó correctamente')
