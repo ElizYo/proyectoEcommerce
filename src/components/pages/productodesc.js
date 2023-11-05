@@ -34,29 +34,32 @@ export default function Productdesc({ match }) {
       ) : error ? (
         <p>Error: {error.message}</p>
       ) : (
-        <div className="row mt-5 align-items-stretch">
-          <div className="col-md-6">
-            <div className="card p-2 m-3 shadow p-3 mb-5 bg-white rounded" style={{ maxWidth: "none" }}>
+        <div className="productdesc-container">
+          <div className="productdescard-container-left">
+            <div className="productdesc-card" style={{ maxWidth: "none" }}>
               <img
                 src={"/assets/images/" + product.image}
                 alt={product.nombre}
                 className="img-fluid m-3 bigimg mx-auto"
-                style={{ width: "560px", height: "560px" }}
               />
             </div>
           </div>
-          <div className="col-md-6">
-            <div className="row align-items-stretch">
-              <div className="col-md-6">
-                <div className="m-2 shadow p-3 mb-5 bg-white rounded" style={{ height: "605px" }}>
+
+
+          <div className="productdesc-container-right">
+            <div className="productdesc-container no-margin-top">
+
+              <div className="productdesc-container-desc">
+                <div className="productdesc-card altura-card">
                   <h1>
                     <b className="nombre-product">{product.nombre}</b>
                   </h1>
                   <p>{product.descripcion}</p>
                 </div>
               </div>
-              <div className="col-md-6 text-left">
-                <div className="m-2 shadow p-3 mb-5 bg-white rounded">
+
+              <div className="productdesc-container-price">
+                <div className="productdesc-card">
                   <h1>
                     <b>Price: {product.precio} €</b>
                   </h1>
@@ -89,6 +92,7 @@ export default function Productdesc({ match }) {
                 <hr />
                 <Review key={product.id} product={product} />
               </div>
+              
             </div>
           </div>
         </div>

@@ -26,6 +26,10 @@ const usuarioSchema = new mongoose.Schema({
     isAdmin: {
         type: Boolean,
         required: false
+    },
+    fecha_nac: {
+        type: Date,
+        required: false
     }
 })
 

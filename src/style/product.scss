@@ -5,19 +5,19 @@ $font-family_1: 'Kanit', sans-serif;
 $background-color_1: #7d7d7d;
 $background-color_2: black;
 
+@import 'mixin';
+
 .item-card {
+	@include flex-column-center;
 	background-color: $background-color_1;
 	border: none;
 	border-radius: 6px;
 	box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
 	height: 100%;
-	display: flex;
-	flex-direction: column;
 }
 
 .item-info {
-	display: flex;
-	flex-direction: column;
+	@include flex-column-center;
 	gap: 15px;
 	flex-wrap: wrap;
 	height: 100%;
@@ -31,17 +31,12 @@ $background-color_2: black;
 }
 
 .productStyle {
-	display: 'flex';
-	flex-direction: 'column';
-	align-items: 'center';
-	text-align: 'center';
+	@include flex-column-center;
 }
 
 .h1,
 .rating {
-	display: flex;
-	align-items: center;
-	justify-content: center;
+	@include flex-center;
 	width: 100%;
 	height: 50px;
 }
@@ -53,11 +48,10 @@ $background-color_2: black;
 }
 
 .h1-nombre {
-	display: flex;
+	@include flex-center;
 	margin-top: 25px;
 	width: 100%;
 	height: 100px;
-	align-items: center;
 	font-family: $font-family_1;
 	font-size: 24px;
 	color: $color_2;
@@ -91,3 +85,21 @@ a {
 		text-decoration: none;
 	}
 }
+.cart-container {
+	margin: 90px 0px;
+	@include flex-center;
+
+  }
+  
+  .cart-card {
+	max-width: none;
+	width: 80%;
+	padding: 20px;
+	box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
+	background-color: #fff;
+	border-radius: 0.25rem;
+  
+	.card-content {
+	@include flex-column-center;
+	}
+  }

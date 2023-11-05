@@ -21,7 +21,7 @@ export default function Pasarela({amount}) {
     }
 
     return(
-        <div>
+        <div className="button-container">
             {loading && (<Loader/>)}
             {success && (<Success success='Tu pedido ha sido realizado.'/>)}
             {error && (<Error error='Algo salio mal,intentalo de nuevo.'/>)}
@@ -33,7 +33,7 @@ export default function Pasarela({amount}) {
             currency="EUR"
             stripeKey="pk_test_51O6DtGABEMRaYOZG8Hh0TePenTyvgssI4MJiqpD0FZkcoCdJvinOtJoO0YvcSlHSBq3oQNw7cS6BGMK6k8vkUgLG00xEFH1eqU"
             >
-                <button className="btn">Pagar</button>
+                <button className="button">Pagar</button>
             </StripeCheckout>
         </div>
     )

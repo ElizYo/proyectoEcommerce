@@ -39,19 +39,8 @@ export default function EditProduct({ match }) {
     }, [dispatch, product]);
 
     function editproduct(e) {
-        
+
         e.preventDefault();
-
-        /*const productoModel = {
-            product_id: match.params.productid,
-            nombre: nombre,
-            precio: precio,
-            stock: stock,
-            image: image,
-            categoria: categoria,
-            descripcion: descripcion,
-
-        };*/
 
         const formData = new FormData();
         formData.append('producto_id', String(match.params.productid));
@@ -65,7 +54,7 @@ export default function EditProduct({ match }) {
         dispatch(updateProducto(formData));
     }
 
-    
+
 
 
     return (
@@ -96,7 +85,7 @@ export default function EditProduct({ match }) {
                         value={stock}
                         onChange={(e) => setStock(e.target.value)}
                     />
-                    <input 
+                    <input
                         type="file"
                         placeholder="Sube tu imagen"
                         onChange={(e) => setImagen(e.target.files[0])}

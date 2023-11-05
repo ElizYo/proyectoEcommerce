@@ -9,7 +9,7 @@ export const registrarNuevoUsuario = (usuario) => dispatch => {
         .post("/api/usuarios/register", usuario)
         .then(res => {
             dispatch({ type: 'USER_REGISTER_SUCCESS' })
-
+            window.location.href = '/login';
             console.log(res);
 
         })
@@ -81,6 +81,44 @@ export const updateUsuario = (userid, updateduser) => (dispatch, getState) => {
         });
 
 }
+
+
+export const getClienteById = (usuarioid) => (dispatch) => {
+
+    dispatch({ type: "GET_CLIENT_BY_ID_REQUEST" });
+
+    axios
+        .get(`/api/usuarios/getusuariobyid?id=${usuarioid}`)
+        .then((res) => {
+            dispatch({ type: "GET_CLIENT_BY_ID_SUCCESS", payload: res.data });
+        })
+        .catch((err) => {
+            console.log("Error action", err);
+            dispatch({ type: "GET_CLIENT_BY_ID_FAILED", payload: err });
+        });
+};
+
+export const updateClienteUsuario = (userid, clientData) => (dispatch, getState) => {
+
+    console.log(clientData);
+
+    dispatch({ type: 'CLIENT_UPDATE_REQUEST' })
+
+    axios
+        .put("/api/usuarios/updateusuario", { userid: userid, updateduser: clientData })
+        .then(res => {
+
+            dispatch({ type: 'CLIENT_UPDATE_SUCCESS' })
+
+            console.log(res)
+        })
+        .catch(err => {
+            dispatch({ type: 'CLIENT_UPDATE_FAILED', payload: err })
+            console.log("ERROR_UPDATE_USER", err);
+        });
+
+}
+
 
 
 export const getAllUsuarios = () => dispatch => {

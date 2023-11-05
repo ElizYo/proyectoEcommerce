@@ -19,10 +19,7 @@ export default function Register() {
   const [usuario, setUsuario] = useState("");
   const [password, setPassword] = useState("");
   const [repassword, setRepassword] = useState("");
-
-  /*const handleSubmit = (e) => {
-    e.preventDefault();
-  };*/
+  const [fechaNac, setFechaNac] = useState("");
 
   function register(e) {
     e.preventDefault()
@@ -31,7 +28,9 @@ export default function Register() {
       apellido: apellido,
       email: email,
       usuario: usuario,
-      password: password
+      password: password,
+      fecha_nac: fechaNac,
+      isAdmin: false
     };
 
     console.log(user);
@@ -41,12 +40,12 @@ export default function Register() {
 
     }
     else {
-      alert('passwords not matched')
+      alert('Las contraseñas no coinciden')
     }
   }
 
   return (
-    <div>
+    <div className="body">
       <div className="form-container">
         <div className="card">
           <div className="div">
@@ -84,6 +83,13 @@ export default function Register() {
                 className="form-control"
                 value={usuario}
                 onChange={(e) => setUsuario(e.target.value)}
+              />
+               <input
+                type="date"
+                placeholder="Fecha de Nacimiento"
+                className="form-control"
+                value={fechaNac}
+                onChange={(e) => setFechaNac(e.target.value)}
               />
               <input
                 type="password"

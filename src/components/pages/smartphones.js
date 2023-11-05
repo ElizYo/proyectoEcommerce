@@ -64,12 +64,12 @@ export default function Smartphones() {
     <div>
       <div className="product-container">
         {currentProducts.map((product) => (
-          <div className="col-12 col-md-6 col-lg-4 p-5" key={product._id}>
+          <div className="card-container" key={product._id}>
             <Product product={product} />
           </div>
         ))}
       </div>
-      {numPaginas > 1 && ( // Verifica si hay más de una página
+      {numPaginas > 1 && (
         <div className="pagination">
           {paginaActual > 1 && (
             <button onClick={handlePrevPage}>Anterior</button>

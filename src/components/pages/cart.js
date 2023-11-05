@@ -16,9 +16,9 @@ export default function Cart() {
     var total = articles.reduce((acc, item) => acc + (item.precio * item.cantidad), 0)
 
     return (
-        <div className="row mt-3 justify-content-center">
-            <div className="col-md-8 card text-center shadow p-3 mb-5 bg-white rounded" style={{ maxWidth: "none", width: "80%", padding: "20px" }}>
-                <h2 className="text-center m-5">Mi compra</h2>
+        <div className="cart-container">
+            <div className="cart-card" style={{ maxWidth: "none", width: "80%", padding: "20px" }}>
+                <h2 className="card-content">Mi compra</h2>
                 <div className="table-responsive">
                     <table className="table table-bordered">
                         <thead>

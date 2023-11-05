@@ -1,0 +1,54 @@
+@import 'mixin.scss';
+
+
+.profile-container {
+    @include flex-row-center;
+    margin: 80px 0px;
+}
+
+
+.profile-card {
+    flex: 0 0 calc(100% - 1rem);
+    max-width: 400px;
+    padding: 1rem;
+    border: 1px solid #dee2e6;
+    border-radius: 0.25rem;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+    background-color: #fff;
+
+}
+
+.text-card {
+    text-align: center;
+    margin: 1rem;
+    font-family: 'Kanit', sans-serif;
+}
+
+
+.login-input {
+    @include custom-input-styles;
+}
+
+.input-container {
+    @include flex-column-center;
+
+    input {
+        @include custom-input-styles;
+    }
+}
+
+
+.custom-select {
+    appearance: none;
+    background-color: #fff;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    padding: 8px;
+    width: 100%;
+    cursor: pointer;
+
+    &:focus {
+        outline: none;
+        border-color: #007bff;
+    }
+}

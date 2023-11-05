@@ -6,8 +6,6 @@ import { BrowserRouter } from "react-router-dom";
 import App from "./components/app";
 import store  from "./reducers/store";
 
-//ESTE ES EL INDEX DEL INDIO
-//createStoreWithMiddleware.dispatch({sasas})
 
 import "./style/main.scss";
 

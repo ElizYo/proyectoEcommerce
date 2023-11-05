@@ -1,7 +1,7 @@
 import { combineReducers } from 'redux';
 import { getAllProductosReducer, getProductoByIdReducer, addProductReducer, deleteProductReducer, updateProductReducer, addProductoReviewReducer } from './productosReducer'
 import { getcarritoReducer } from './carritoReducer'
-import { loginReducer, registerNuevoUsuarioReducer, updateUsuarioReducer, getAllUsersReducer, deleteUsuarioReducer } from './usuarioReducer'
+import { loginReducer, registerNuevoUsuarioReducer, updateUsuarioReducer, getAllUsersReducer, deleteUsuarioReducer, updateClienteUsuarioReducer, getClientByIdReducer } from './usuarioReducer'
 import {createStore , applyMiddleware} from 'redux' 
 import { composeWithDevTools } from 'redux-devtools-extension';
 import thunk from 'redux-thunk';
@@ -17,6 +17,8 @@ const rootReducer = combineReducers({
   getcarritoReducer : getcarritoReducer,
   registerNuevoUsuarioReducer : registerNuevoUsuarioReducer,
   updateUsuarioReducer: updateUsuarioReducer,
+  getClientByIdReducer:getClientByIdReducer,
+  updateClienteUsuarioReducer: updateClienteUsuarioReducer,
   loginReducer : loginReducer,
   getAllUsersReducer:getAllUsersReducer,
   deleteUsuarioReducer:deleteUsuarioReducer,

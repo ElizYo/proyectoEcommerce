@@ -3,10 +3,11 @@ import { useDispatch, useSelector } from 'react-redux'
 import { loginUsuario } from "../../actions/usuarioActions";
 import Loader from "../Loader";
 import Error from "../Error";
+import '../../style/login.scss';
 
 export default function Login() {
-    
-    const loginreducer = useSelector(state=>state.loginReducer)
+
+    const loginreducer = useSelector(state => state.loginReducer)
     const { currentUser, loading, error } = loginreducer
 
     const [usuario, setusuario] = useState("");
@@ -18,7 +19,7 @@ export default function Login() {
     function login(e) {
 
         e.preventDefault()
-        
+
         const user = {
             usuario: usuario,
             password: password
@@ -31,7 +32,7 @@ export default function Login() {
 
     if (currentUser) {
 
-        if(currentUser.isAdmin){
+        if (currentUser.isAdmin) {
             window.location.href = '/admin';
             return false;
         } else {
@@ -43,34 +44,48 @@ export default function Login() {
 
     return (
         <div>
-            <div className="row justify-content-center m-3">
-                <div className="col-md-4 card p-3 shadow p-3 mb-5 bg-white rounded" style={{ marginTop: "100px" }}>
-                    <div className="div">
-                        <h2 className="text-center m-3" style={{ display: "inline" }}>LOGIN</h2>
-                        
+            <div className="login-container">
+                <div className="login-card">
+                    <div className="login-content">
+                        <h2>Iniciar Sesión</h2>
+
                         {error && (<Error error='Credenciales Invalidas' />)}
                         {loading && (<Loader />)}
 
                         <form onSubmit={login}>
 
-                            <input type="text" placeholder="usuario" className="form-control" value={usuario} required onChange={(e) => {
-                                setusuario(e.target.value);
-                            }}
-                            />
+                            <div className="input-container">
+                                <input
+                                    type="text"
+                                    placeholder="Usuario"
+                                    className="custom-input"
+                                    value={usuario}
+                                    required
+                                    onChange={(e) => {
+                                        setusuario(e.target.value);
+                                    }}
+                                />
+                                <input
+                                    type="password"
+                                    placeholder="Contraseña"
+                                    className="custom-input"
+                                    value={password}
+                                    required
+                                    onChange={(e) => {
+                                        setpassword(e.target.value);
+                                    }}
+                                />
+                            </div>
 
-                            <input type="password" placeholder="password" className="form-control" value={password} required onChange={(e) => {
-                                setpassword(e.target.value);
-                            }}
-                            />
 
-                            <div className="text-right">
-                                <button type='submit' className="btn mt-3">
-                                    LOGIN
-                                </button>
+                            <div className="button-container">
+                                <button type='submit' className="button">Iniciar Sesión</button>
                             </div>
                         </form>
                     </div>
-                    <a style={{ color: 'black' }} href="/register" className='mt-3'>Crear Cuenta</a>
+                    <div className="login-footer">
+                        <a href="/register" className='mt-3'>Crear Cuenta</a>
+                    </div>
                 </div>
             </div>
         </div>

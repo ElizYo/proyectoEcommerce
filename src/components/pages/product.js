@@ -2,8 +2,8 @@ import React from 'react';
 import 'bootstrap/dist/css/bootstrap.css';
 import '../../style/product.scss';
 import Rating from 'react-rating';
-import starEmpty from "../../../static/assets/star-empty.png";
-import starFull from "../../../static/assets/star-full.png";
+import starEmpty from "../../../static/assets/images/star-empty.png";
+import starFull from "../../../static/assets/images/star-full.png";
 
 import { Link } from 'react-router-dom';
 export default function Product({ product }) {

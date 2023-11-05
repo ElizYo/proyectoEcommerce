@@ -167,12 +167,10 @@ router.put("/updateproduct", (req, res) => {
 
         if (files.image != undefined) {
 
-            // files contiene la información del archivo subido
             const file = files.image[0];
             const originalFileName = file.originalFilename;
             const tempPath = file.path;
 
-            // Mueve el archivo a su ubicación final
             const targetPath = path.join(uploadDir, originalFileName);
 
             objectDataToUpdate.image = originalFileName;
@@ -189,7 +187,7 @@ router.put("/updateproduct", (req, res) => {
         Producto.findByIdAndUpdate(product_id, objectDataToUpdate, (err) => {
 
             if (err) {
-                return res.status(400).json({ message: 'Something went wrong' + err });
+                return res.status(400).json({ message: 'Algo salio mal' + err });
             }
             else {
                 res.send('Product Updated Successfully')

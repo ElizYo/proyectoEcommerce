@@ -12,21 +12,9 @@ export default function AddProduct() {
     const [descripcion, setDescripcion] = useState("");
     const dispatch = useDispatch();
 
+    //Funcion para agregar un nuevo producto con un formulario
     const addproduct = (e) => {
         e.preventDefault();
-
-        /*const product = {
-            nombre,
-            precio,
-            stock,
-            image,
-            categoria,
-            descripcion,
-        };
-        dispatch(addNewProduct(product));
-
-        */
-
 
         const formData = new FormData();
         formData.append('nombre', nombre);
@@ -42,7 +30,7 @@ export default function AddProduct() {
 
     return (
         <div className="add-product-container">
-            <h1>Add new product</h1>
+            <h1>Añadir nuevo producto</h1>
             <div className="form-container">
                 <form onSubmit={addproduct}>
                     <input
@@ -84,6 +72,5 @@ export default function AddProduct() {
                 </form>
             </div>
         </div>
-
     );
 }

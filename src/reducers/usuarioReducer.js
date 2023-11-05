@@ -9,11 +9,12 @@ export const registerNuevoUsuarioReducer = (state = { currentUser: {} }, action)
             ...state,
             loading: false,
             success: true,
+            error:false,
             currentUser: action.payload
         }
         case 'USER_REGISTER_FAILED': return {
             ...state,
-            loading: true,
+            loading: false,
             error: 'El usuario ya esta registrado'
         }
 
@@ -40,6 +41,7 @@ export const loginReducer = (state = { currentUser: {} }, action) => {
             ...state,
             loading: false,
             success: true,
+            error:false,
             currentUser: {
                 ...state.currentUser,
                 nombre: action.payload.nombre,
@@ -79,6 +81,53 @@ export const updateUsuarioReducer = (state = {}, action) => {
             error: 'Datos de usuario acualizados'
         }
 
+        default: return state
+    }
+
+}
+
+export const updateClienteUsuarioReducer = (state = {}, action) => {
+
+    switch (action.type) {
+        case 'CLIENT_UPDATE_REQUEST': return {
+            ...state,
+            loading: true
+        }
+        case 'CLIENT_UPDATE_SUCCESS': return {
+            ...state,
+            loading: false,
+            success: true
+        }
+        case 'CLIENT_UPDATE_FAILED': return {
+            ...state,
+            loading: false,
+            error: 'Datos de usuario acualizados'
+        }
+
+        default: return state
+    }
+
+}
+
+
+export const getClientByIdReducer = (state = { cliente : {} }, action) => {
+
+    switch (action.type) {
+        case 'GET_CLIENT_BY_ID_REQUEST': return {
+            ...state,
+            loading: true
+        }
+        case 'GET_CLIENT_BY_ID_SUCCESS': 
+            return {
+            ...state,
+            cliente: action.payload,
+            loading: false
+        }
+        case 'GET_CLIENT_BY_ID_FAILED': return {
+            ...state,
+            error: action.payload,
+            loading: false
+        }
         default: return state
     }
 

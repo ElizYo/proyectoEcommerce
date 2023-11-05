@@ -5,9 +5,9 @@ router.use(express.json());
 
 router.post("/register", (req, res) => {
 
-    const { nombre, apellido, usuario, email, password } = req.body;
+    const { nombre, apellido, usuario, email, password, fecha_nac } = req.body;
 
-    Usuario.find({ email: email, usuario: usuario }, (err, docs) => {
+    Usuario.find({ email: email, usuario: usuario}, (err, docs) => {
 
         if (docs.length > 0) {
             return res.status(400).json({ message: 'No se puede registrar el mismo usuario con mismo email' });
@@ -18,7 +18,9 @@ router.post("/register", (req, res) => {
                 apellido: apellido,
                 usuario: usuario,
                 email: email,
-                password: password
+                password: password,
+                fecha_nac: fecha_nac,
+                isAdmin: false
             })
 
             nuevoUsuario.save(err => {
@@ -37,7 +39,7 @@ router.post("/register", (req, res) => {
 
         if (err) {
 
-            return res.status(400).json({ message: 'Something went wrong' });
+            return res.status(400).json({ message: 'Algo salio mal' });
         }
 
     })
@@ -88,6 +90,21 @@ router.get("/getallusuarios", (req, res) => {
 
 });
 
+router.get("/getusuariobyid", (req, res) => {
+
+    let usuarioId = req.query.id;
+
+    Usuario.find({_id: usuarioId}, (err, docs) => {
+
+        if (!err) {
+            return res.send(docs[0]);
+        } else {
+            return res.status(400).json({ message: 'datos no obtenidos' })
+        }
+
+    })
+
+});
 router.delete("/deleteusuario", (req, res) => {
 
     Usuario.findByIdAndRemove(req.body.userid, (err) => {
@@ -110,7 +127,8 @@ router.put("/updateusuario", (req, res) => {
     Usuario.findByIdAndUpdate(userid , {
         nombre : updateduser.nombre ,
         email : updateduser.email , 
-        password : updateduser.password
+        password : updateduser.password ,
+        isAdmin : updateduser.isAdmin
     } , (err)=>{
 
         if(err){

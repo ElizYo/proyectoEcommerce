@@ -6,6 +6,7 @@ $background-color_1: #c6c6c6;
 $background-color_2: black;
 $background-color_3: #f1f0f0;
 
+@import 'mixin';
 
 h1 {
     font-size: 18px;
@@ -27,9 +28,7 @@ h1 {
   }
 
 .pagination {
-    display: flex;
-    justify-content: center;
-  text-align: center;
+  @include flex-center;
   background-color: $background-color_1; 
   padding: 10px;
 }
@@ -49,4 +48,16 @@ h1 {
 .pagination button:hover {
   background-color: $color_1; 
   color: $background-color_2; 
+}
+
+
+.card-container{
+  width: 100%; 
+  @media (min-width: 768px) {
+    width: 50%; 
+  }
+  @media (min-width: 992px) {
+    width: 33.3333%; 
+  }
+  padding: 1.25rem;
 }

@@ -1,3 +1,79 @@
-.nombre-product{
+@import 'mixin.scss';
+
+.nombre-product {
     font-family: 'Kanit', sans-serif;
+}
+
+
+.productdesc-container {
+    display: flex;
+    flex-wrap: wrap;
+    margin-top: 1.25rem;
+    align-items: stretch;
+
+    & .no-margin-top {
+        margin-top: 0;
+    }
+}
+
+.productdescard-container-left {
+    flex: 0 0 calc(50% - 1rem);
+    max-width: calc(50% - 1rem);
+
+    @media (max-width: 768px) {
+        max-width: 100%;
+        flex: 100%;
+    }
+}
+
+.productdesc-container-right {
+    flex: 0 0 calc(50% - 1rem);
+    max-width: calc(50% - 1rem);
+    text-align: left;
+    margin-top: 0;
+
+    @media (max-width: 768px) {
+        max-width: 100%;
+        flex: 100%;
+    }
+}
+
+
+.productdesc-card {
+    border: 1px solid #ccc;
+    border-radius: 0.25rem;
+    background-color: #fff;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+    padding: 1rem;
+    margin: 1rem;
+    margin-bottom: 2rem;
+    text-align: center;
+
+    &.altura-card {
+        height: 600px;
+    }
+}
+
+.productdesc-container-desc {
+    flex: 0 0 calc(50% - 1rem);
+    max-width: calc(50% - 1rem);
+    text-align: left;
+}
+
+
+.productdesc-container-price {
+    flex: 0 0 calc(50% - 1rem);
+    max-width: calc(50% - 1rem);
+    text-align: left;
+}
+
+.img-fluid {
+    width: "560px";
+    height: "560px";
+
+    @media (min-width: 576px) {
+        width: "360px";
+        height: "360px";
+    }
+
 }

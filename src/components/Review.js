@@ -2,8 +2,8 @@ import React, { useState } from 'react';
 import Rating from 'react-rating';
 import { useDispatch, useSelector } from 'react-redux';
 import { addProductoReview } from '../actions/productosActions';
-import starEmpty from "../../static/assets/star-empty.png";
-import starFull from "../../static/assets/star-full.png";
+import starEmpty from "../../static/assets/images/star-empty.png";
+import starFull from "../../static/assets/images/star-full.png";
 
 export default function Review({ product }) {
     const dispatch = useDispatch();

@@ -3,7 +3,7 @@ import { NavLink } from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faShoppingCart } from "@fortawesome/free-solid-svg-icons";
 import { faUser } from "@fortawesome/free-solid-svg-icons";
-import logo from "../../../static/assets/logo.png";
+import logo from "../../../static/assets/images/logo.png";
 import "../../style/navbar.scss";
 import { useSelector, useDispatch } from "react-redux";
 import { logoutUsuario } from "../../actions/usuarioActions";
@@ -18,13 +18,12 @@ const NavigationComponent = () => {
   return (
     <div className="nav-container" id="test">
       <div className="nav-bar">
-        <NavLink exact to="/" activeClassName="nav-link-active">
+        <NavLink to={currentUser && currentUser.isAdmin ? "/admin" : "/"} activeClassName="nav-link-active">
           <img className="navbar-logo" src={logo} alt="Logo" />
         </NavLink>
 
-
         <div className="menu-bar">
-          <NavLink to={currentUser && currentUser.isAdmin ? "/admin" : "/"} className="navbar-link" activeClassName="nav-link-active">
+          <NavLink exact to={currentUser && currentUser.isAdmin ? "/admin" : "/"} className="navbar-link" activeClassName="nav-link-active">
             Home
           </NavLink>
 

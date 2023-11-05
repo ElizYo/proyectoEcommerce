@@ -20,7 +20,7 @@ export default function UsuarioList() {
     }, [])
 
     return (
-        <div>
+        <div className="user-list">
             <h2>Users List</h2>
             <table className='table table-bordered table-responsive-sm'>
                 <thead>
@@ -36,7 +36,7 @@ export default function UsuarioList() {
 
                 <tbody>
                     {loading && (<Loader />)}
-                    {error && (<Error error='Something went wrong' />)}
+                    {error && (<Error error='Algo salio mal' />)}
                     {usuarios && usuarios.map((usuario) => {
                         return (
                             <tr key={usuario._id}>

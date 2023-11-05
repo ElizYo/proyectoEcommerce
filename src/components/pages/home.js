@@ -38,7 +38,7 @@ export default function Home() {
     <div>
       <div className="product-container">
         {currentProducts.map((product) => (
-          <div className="col-12 col-md-6 col-lg-4 p-5" key={product._id}>
+          <div className="card-container" key={product._id}>
             <Product product={product} />
           </div>
         ))}
@@ -47,7 +47,7 @@ export default function Home() {
         {paginaActual > 1 && (
           <button onClick={handlePrevPage}>Anterior</button>
         )}
-        {numPaginas > 1 && ( // Mostrar números de página solo si hay más de una página
+        {numPaginas > 1 && (
           [...Array(numPaginas).keys()].map(num => {
             let classItem = `h3 border p-3 cursor-pointer ${(paginaActual === num + 1 ? "bg-black text-light" : "")}`;
             return (
