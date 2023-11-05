@@ -1,9 +1,9 @@
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { getAllProductos } from "../../actions/productosActions";
-import Product from "./product"; 
-export default function Smartphones() {
+import Product from "./product";
 
+export default function Smartphones() {
   const getallproductsstate = useSelector(
     (state) => state.getAllProductosReducer
   );
@@ -13,52 +13,36 @@ export default function Smartphones() {
 
   useEffect(() => {
     dispatch(getAllProductos());
-  }, []);
-
-  const productosSmarthphone = products.filter(
-    (product) => product.categoria === "smartphones"
-  );
-
-  
-  useEffect(() => {
-    const calculatedNumPaginas = Math.ceil(products.length / elemXpagina);
-    setNumPaginas(calculatedNumPaginas);
-  }, [products]);
+  }, [dispatch]);
 
   const elemXpagina = 5;
   const [paginaActual, setCurrentPage] = useState(1);
   const [numPaginas, setNumPaginas] = useState(1);
 
-
-  useEffect(() => {
-    const productosPorPagina = productosSmarthphone.slice(
-      (paginaActual - 1) * elemXpagina,
-      paginaActual * elemXpagina
-    );
-
-    const calculatedNumPaginas = Math.ceil(productosPorPagina.length / elemXpagina);
-    setNumPaginas(calculatedNumPaginas);
-
-    setNumPaginas(calculatedNumPaginas);
-  }, [products]);
-
-
-  const indexOfPrimerProducto = (paginaActual - 1) * elemXpagina;
-  const indexOfUltimoProducto = indexOfPrimerProducto + elemXpagina;
-  const currentProducts = productosSmarthphone.slice(
-    indexOfPrimerProducto,
-    indexOfUltimoProducto
+  const productosSmarthphone = products.filter(
+    (product) => product.categoria === "smartphones"
   );
 
+  useEffect(() => {
+    const calculatedNumPaginas = Math.ceil(productosSmarthphone.length / elemXpagina);
+    setNumPaginas(calculatedNumPaginas);
+  }, [productosSmarthphone, elemXpagina]);
+
   const handleNextPage = () => {
-    setCurrentPage(paginaActual + 1);
+    if (paginaActual < numPaginas) {
+      setCurrentPage(paginaActual + 1);
+    }
   };
 
   const handlePrevPage = () => {
-    setCurrentPage(paginaActual - 1);
-  };  
+    if (paginaActual > 1) {
+      setCurrentPage(paginaActual - 1);
+    }
+  };
 
-
+  const indexOfPrimerProducto = (paginaActual - 1) * elemXpagina;
+  const indexOfUltimoProducto = Math.min(indexOfPrimerProducto + elemXpagina, productosSmarthphone.length);
+  const currentProducts = productosSmarthphone.slice(indexOfPrimerProducto, indexOfUltimoProducto);
 
   return (
     <div>

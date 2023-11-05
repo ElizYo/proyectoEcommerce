@@ -71,4 +71,18 @@ router.post("/getordersbyuserid", async (req, res) => {
 
 })
 
+
+router.get("/getallorders", async (req, res) => {
+    Orden.find({}, (err, docs) => {
+        if(!err) {
+            return res.send(docs);
+        } else {
+            console.log(err);
+            return res.status(400).json({message : 'Datos de ordebes no obtenidos'})
+        }
+    })
+
+})
+
+
 module.exports = router

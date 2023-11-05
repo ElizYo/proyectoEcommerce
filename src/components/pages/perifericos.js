@@ -9,28 +9,14 @@ export default function Perifericos() {
   );
   const { products } = getallproductsstate;
 
-  useEffect(() => {
-    dispatch(getAllProductos());
-  }, [dispatch]);
-
   const dispatch = useDispatch();
 
   const elemXpagina = 5;
   const [paginaActual, setCurrentPage] = useState(1);
-  const [numPaginas, setNumPaginas] = useState(1);
-
 
   useEffect(() => {
-    const productosPorPagina = productosPerifericos.slice(
-      (paginaActual - 1) * elemXpagina,
-      paginaActual * elemXpagina
-    );
-
-    const calculatedNumPaginas = Math.ceil(productosPorPagina.length / elemXpagina);
-    setNumPaginas(calculatedNumPaginas);
-
-    setNumPaginas(calculatedNumPaginas);
-  }, [products]);
+    dispatch(getAllProductos());
+  }, [dispatch]);
 
   const productosPerifericos = products.filter(
     (product) => product.categoria === "perifericos"
@@ -42,6 +28,8 @@ export default function Perifericos() {
     indexOfPrimerProducto,
     indexOfUltimoProducto
   );
+
+  const numPaginas = Math.ceil(productosPerifericos.length / elemXpagina);
 
   const handleNextPage = () => {
     setCurrentPage(paginaActual + 1);

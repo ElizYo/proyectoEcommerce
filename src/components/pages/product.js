@@ -2,8 +2,6 @@ import React from 'react';
 import 'bootstrap/dist/css/bootstrap.css';
 import '../../style/product.scss';
 import Rating from 'react-rating';
-import starEmpty from "../../../static/assets/images/star-empty.png";
-import starFull from "../../../static/assets/images/star-full.png";
 
 import { Link } from 'react-router-dom';
 export default function Product({ product }) {
@@ -18,8 +16,8 @@ export default function Product({ product }) {
             <div className="rating">
               <Rating
                   initialRating={product.rating}
-                  emptySymbol={<img src={starEmpty} className="icon" style={{ width: 25, height: 25 }} />}
-                  fullSymbol={<img src={starFull} className="icon" style={{ width: 25, height: 25 }} />}
+                  emptySymbol={<img src="/assets/images/star-empty.png" className="icon" style={{ width: 25, height: 25 }} />}
+                  fullSymbol={<img src="/assets/images/star-full.png" className="icon" style={{ width: 25, height: 25 }} />}
                   readonly={true}
               />
             </div>

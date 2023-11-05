@@ -59,7 +59,7 @@ export default function EditProduct({ match }) {
 
     return (
         <div className="add-product-container">
-            <h1>Editar Producto: {match.params.productid}</h1>
+            <h1>Editar Producto:</h1>
             <div className="form-container">
                 <form onSubmit={editproduct}>
                     <input

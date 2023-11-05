@@ -9,25 +9,24 @@ export default function Ordenadores() {
   );
   const { products } = getallproductsstate;
 
-  const productosOrdenadores = products.filter(
-    (product) => product.categoria === "ordenadores"
-  );
-
   const dispatch = useDispatch();
 
   useEffect(() => {
     dispatch(getAllProductos());
-  }, []);
-
-  useEffect(() => {
-    const calculatedNumPaginas = Math.ceil(products.length / elemXpagina);
-    setNumPaginas(calculatedNumPaginas);
-  }, [products]);
+  }, [dispatch]);
 
   const elemXpagina = 5;
   const [paginaActual, setCurrentPage] = useState(1);
   const [numPaginas, setNumPaginas] = useState(1);
 
+  const productosOrdenadores = products.filter(
+    (product) => product.categoria === "ordenadores"
+  );
+
+  useEffect(() => {
+    const calculatedNumPaginas = Math.ceil(productosOrdenadores.length / elemXpagina);
+    setNumPaginas(calculatedNumPaginas);
+  }, [productosOrdenadores, elemXpagina]);
 
   useEffect(() => {
     const productosPorPagina = productosOrdenadores.slice(
@@ -35,12 +34,9 @@ export default function Ordenadores() {
       paginaActual * elemXpagina
     );
 
-    const calculatedNumPaginas = Math.ceil(productosPorPagina.length / elemXpagina);
-    setNumPaginas(calculatedNumPaginas);
+    setNumPaginas(Math.ceil(productosOrdenadores.length / elemXpagina));
 
-    setNumPaginas(calculatedNumPaginas);
-  }, [products]);
-
+  }, [productosOrdenadores, paginaActual, elemXpagina]);
 
   const indexOfPrimerProducto = (paginaActual - 1) * elemXpagina;
   const indexOfUltimoProducto = indexOfPrimerProducto + elemXpagina;
@@ -56,7 +52,7 @@ export default function Ordenadores() {
   const handlePrevPage = () => {
     setCurrentPage(paginaActual - 1);
   };
-  
+
   return (
     <div>
       <div className="product-container">
@@ -66,7 +62,7 @@ export default function Ordenadores() {
           </div>
         ))}
       </div>
-      {numPaginas > 1 && ( 
+      {numPaginas > 1 && (
         <div className="pagination">
           {paginaActual > 1 && (
             <button onClick={handlePrevPage}>Anterior</button>

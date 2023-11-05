@@ -5,7 +5,7 @@ import { loginReducer, registerNuevoUsuarioReducer, updateUsuarioReducer, getAll
 import {createStore , applyMiddleware} from 'redux' 
 import { composeWithDevTools } from 'redux-devtools-extension';
 import thunk from 'redux-thunk';
-import { placeOrderReducer, getOrdersByUserIdReducer } from './pasarelaReducer';
+import { placeOrderReducer, getOrdersByUserIdReducer, getAllOrdersReducer } from './pasarelaReducer';
 
 const rootReducer = combineReducers({
   getAllProductosReducer: getAllProductosReducer,
@@ -24,6 +24,7 @@ const rootReducer = combineReducers({
   deleteUsuarioReducer:deleteUsuarioReducer,
   placeOrderReducer : placeOrderReducer,
   getOrdersByUserIdReducer : getOrdersByUserIdReducer,
+  getAllOrdersReducer : getAllOrdersReducer
 });
 
 const articles = JSON.parse(localStorage.getItem('articles')) || [];

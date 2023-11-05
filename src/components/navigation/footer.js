@@ -1,5 +1,4 @@
 import React from "react";
-import logo from "../../../static/assets/images/logo.png";
 import '../../style/footer.scss';
 import { useSelector, useDispatch } from "react-redux";
 import { NavLink } from "react-router-dom";
@@ -16,7 +15,7 @@ const Footer = () => {
         <div className="footer-logo-icons-container">
           <div className="footer-logo-descripcion-container">
             <div className="footer-logo-descripcion-content">
-              <img className="navbar-logo" src={logo} alt="Logo" />
+              <img className="navbar-logo" src="assets/images/logo.png" alt="Logo" />
               <span>Av. de la Innovación, 15, 48902 País Vasco</span>
               <span>954 46 00 00</span>
               <span>¡Contacta con nostros!</span>
