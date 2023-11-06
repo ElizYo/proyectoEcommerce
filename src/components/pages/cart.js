@@ -39,14 +39,11 @@ export default function Cart() {
                                     <td>{item.nombre}</td>
                                     <td>{item.precio}</td>
                                     <td><select value={item.cantidad} onChange={(e) => { dispatch(carritoActions(item, e.target.value)) }}>
-
                                         {[...Array(item.stock).keys()].map((x, i) => {
-
-                                            return <option value={i + 1}>{i + 1}</option>
-
+                                            return <option key={i} value={i + 1}>{i + 1}</option>
                                         })}
-
-                                    </select></td>
+                                    </select>
+                                    </td>
                                     <td>{item.cantidad * item.precio}</td>
                                     <td>
                                         <FontAwesomeIcon icon={faTrash} onClick={() => dispatch(deleteFromCart(item))} />
@@ -65,7 +62,7 @@ export default function Cart() {
                     <h2 className='text-center'>Total: {total.toLocaleString('es-ES', { style: 'currency', currency: 'EUR' })}</h2>
 
                     <hr />
-                    <Pasarela amount={total} />
+                    <Pasarela amount={total * 100} />
 
                 </div>
 

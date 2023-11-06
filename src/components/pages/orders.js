@@ -40,13 +40,15 @@ export default function Orders() {
             <tbody>
               {loading && (<Loader />)}
               {orders && (orders.map(order => {
-                return <tr onClick={() => { window.location = `/orderinfo/${order._id}` }}>
-                  <td>{order._id}</td>
-                  <td>{order.orderAmount}</td>
-                  <td>{order.createdAt.substring(0, 10)}</td>
-                  <td>{order.transactionId}</td>
-                  <td>{order.isDelivered ? (<li>Entregado</li>) : (<li>Pedido Realizado</li>)}</td>
-                </tr>
+                return (
+                  <tr key={order._id}>
+                    <td>{order._id}</td>
+                    <td>{order.ordenMonto}</td>
+                    <td>{order.createdAt.substring(0, 10)}</td>
+                    <td>{order.idTransaccion}</td>
+                    <td>{order.isDelivered ? (<li>Entregado</li>) : (<li>Pedido Realizado</li>)}</td>
+                  </tr>
+                );
               }))}
 
               {error && (<Error error='Algo salio mal' />)}

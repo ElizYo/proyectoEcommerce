@@ -84,9 +84,14 @@ const NavigationComponent = () => {
             </NavLink>
           )}
 
-          <NavLink to="/cart" className="navbar-link" activeClassName="nav-link-active">
-            <FontAwesomeIcon icon={faShoppingCart} style={{ fontSize: "1.5em" }} />{(articles ? articles.length : 0)}
-          </NavLink>
+          {!currentUser || (currentUser && !currentUser.isAdmin) ? (
+            <NavLink to="/cart" className="navbar-link" activeClassName="nav-link-active">
+              <FontAwesomeIcon icon={faShoppingCart} style={{ fontSize: "1.5em" }} />{(articles ? articles.length : 0)}
+            </NavLink>
+          ) : (
+            ""
+          )}
+
         </div>
       </div>
     </div>

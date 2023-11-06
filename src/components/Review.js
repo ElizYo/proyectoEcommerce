@@ -45,8 +45,8 @@ export default function Review({ product }) {
 
             <Rating
                 initialRating={product.rating}
-                emptySymbol={<img src={starEmpty} className="icon" style={{ width: 25, height: 25 }} />}
-                fullSymbol={<img src={starFull} className="icon" style={{ width: 25, height: 25 }} />}
+                emptySymbol={<img src="/assets/images/star-empty.png" className="icon" style={{ width: 25, height: 25 }} />}
+                fullSymbol={<img src="/assets/images/star-full.png" className="icon" style={{ width: 25, height: 25 }} />}
                 onChange={(e) => { setrating(e) }}
 
             />
@@ -61,8 +61,8 @@ export default function Review({ product }) {
                     <div key={review.id}>
                         <Rating
                             initialRating={review.rating}
-                            emptySymbol={<img src={starEmpty} className="icon" style={{ width: 25, height: 25 }} />}
-                            fullSymbol={<img src={starFull} className="icon" style={{ width: 25, height: 25 }} />}
+                            emptySymbol={<img src="/assets/images/star-empty.png" style={{ width: 25, height: 25 }} />}
+                            fullSymbol={<img src="/assets/images/star-full.png" style={{ width: 25, height: 25 }} />}
                             readonly={true}
                         />
                         <p>{review.comentario}</p>
