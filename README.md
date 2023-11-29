@@ -31,6 +31,14 @@ Compras de Componentes: Los usuarios pueden navegar por una variedad de componen
 
 https://translucent-violet-archaeopteryx.glitch.me/ 
 
-
+#### Home View
 ![home 1](https://github.com/ElizYo/proyectoEcommerce/assets/113165553/049d3a0f-1cce-4e5d-82f3-233cbbd09b24)
 ![home 2](https://github.com/ElizYo/proyectoEcommerce/assets/113165553/c679d68f-aba7-4f8b-9480-4c0252aa2187)
+
+#### Panel Admin View
+![admin](https://github.com/ElizYo/proyectoEcommerce/assets/113165553/1aa991f3-6cfc-4cca-98a0-cf2c13332fe7)
+
+
+#### Documentation
+[Link to Documentation](https://drive.google.com/file/d/12WzTZLFDNal-TzN6yMBOXBW8_6UZdPI9/view?usp=sharing)
+
